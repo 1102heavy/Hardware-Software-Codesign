@@ -76,14 +76,14 @@ module myip_v1_0
 
 // RAM parameters for assignment 1
 //test 1
-  localparam A_depth_bits = 3;    // 8 elements (A is a 2x4 matrix)
-  localparam B_depth_bits = 2;   // 4 elements (B is a 4x1 matrix)
-  localparam RES_depth_bits = 1;  // 2 elements (RES is a 2x1 matrix)
+  localparam A_depth_bits = 9;    // 8 elements (A is a 2x4 matrix)
+  localparam B_depth_bits = 3;   // 4 elements (B is a 4x1 matrix)
+  localparam RES_depth_bits = 6;  // 2 elements (RES is a 2x1 matrix)
 
 // test 2  
-//    localparam A_depth_bits   = 5;   // 32 elements (A is 4x8)
+//    localparam A_depth_bits   = 9;   // 512 elements (A is 64x8)
 //    localparam B_depth_bits   = 3;   // 8 elements  (B is 8x1)
-//    localparam RES_depth_bits = 2;   // 4 elements  (RES is 4x1)
+//    localparam RES_depth_bits = 6;   // 64 elements  (RES is 64x1)
 
 
   localparam width = 8;      // all 8-bit data
@@ -211,7 +211,7 @@ module myip_v1_0
 
         Read_Inputs:
         begin      
-            if (read_counter >= NUMBER_OF_INPUT_WORDS)
+            if (read_counter >= NUMBER_OF_INPUT_WORDS-1)
                 begin
                     next_state = Compute;
                 end
@@ -226,8 +226,10 @@ module myip_v1_0
           if (!Done) begin
              next_state = Compute;
           end 
-          else begin    
+          else if (M_AXIS_TREADY == 1) begin    
              next_state = Write_Outputs; 
+          end else begin
+            next_state = Compute;
           end
           // Possible to save a cycle by asserting M_AXIS_TVALID and presenting M_AXIS_TDATA just before going into 
           // Write_Outputs state. However, need to adjust write_counter limits accordingly
@@ -238,8 +240,6 @@ module myip_v1_0
         Write_Outputs:
         begin
           // Coprocessor function (adding 1 to sum in each iteration = adding iteration count to sum) happens here (partly)
-          if (M_AXIS_TREADY == 1) 
-          begin
              
             if (write_counter >= NUMBER_OF_OUTPUT_WORDS)
             begin
@@ -248,10 +248,7 @@ module myip_v1_0
             else begin
                 next_state = Write_Outputs;
             end
-          end
-          else begin
-              next_state = Write_Outputs;
-          end
+
         end
         default: next_state = Idle;
       endcase
@@ -326,6 +323,9 @@ always @(*) // outputs
           if (S_AXIS_TVALID == 1)
           begin
             S_AXIS_TREADY   = 1; 
+            A_write_en = 1;
+            A_write_address = read_counter;
+            A_write_data_in = S_AXIS_TDATA [7:0];
             //read_counter_en=1;
           end
         end
@@ -362,26 +362,26 @@ always @(*) // outputs
 //                        start Receiving data
 //                        Starting with A then B                                                          
 //                        First 2**3 words correspond to A then next 2**2 can correspond to B in row major order
-            if (read_counter < NUMBER_OF_INPUT_WORDS_A)
+            if (read_counter < NUMBER_OF_INPUT_WORDS_A-1)
                 begin
                                         
                     A_write_en = 1;
-                    A_write_address = read_counter;
+                    A_write_address = read_counter+1;
                     A_write_data_in = S_AXIS_TDATA [7:0];
 
                       //Fill in A matrix
 
                 end
-            else if (read_counter < NUMBER_OF_INPUT_WORDS)
+            else if (read_counter < NUMBER_OF_INPUT_WORDS-1)
                 begin                    
                     B_write_en = 1;
-                    B_write_address = (read_counter - NUMBER_OF_INPUT_WORDS_A);
+                    B_write_address = (read_counter+1 - NUMBER_OF_INPUT_WORDS_A);
                     B_write_data_in = S_AXIS_TDATA [7:0]; //Discard rest of the 32 bits   
                     
                 
                 end
             
-            else if (read_counter >= NUMBER_OF_INPUT_WORDS)
+            else if (read_counter >= NUMBER_OF_INPUT_WORDS-1)
                 begin
                     S_AXIS_TREADY   = 0;
                     read_counter_rst   = 1;
@@ -422,13 +422,14 @@ always @(*) // outputs
             if (!Done) begin
                 Start =1;
             end 
-            else begin
+            else if (M_AXIS_TREADY == 1) begin
                 RES_read_en = 1;
                 //             RES_write_en <= 0;
                 RES_read_address = write_counter;
                 write_counter_en =1;
                 Start = 0;
             end
+
             // Possible to save a cycle by asserting M_AXIS_TVALID and presenting M_AXIS_TDATA just before going into 
             // Write_Outputs state. However, need to adjust write_counter limits accordingly
             // Alternatively, M_AXIS_TVALID and M_AXIS_TDATA can be asserted combinationally to save a cycle.
@@ -456,30 +457,30 @@ always @(*) // outputs
             B_write_address = 0;
             B_write_data_in = 0; //Discard rest of the 32 bits   
             
-            RES_read_en = 0;
-            RES_read_address = 0;
+//            RES_read_en = 0;
+//            RES_read_address = 0;
             
             Start = 0;
           // Coprocessor function (adding 1 to sum in each iteration = adding iteration count to sum) happens here (partly)
-            if (M_AXIS_TREADY == 1) 
-            begin
+
                   // M_AXIS_TLAST, though optional in AXIS, is necessary in practice as AXI Stream FIFO and AXI DMA expects it.
-                M_AXIS_TDATA  = RES_read_data_out;
-                RES_read_en = 1;
-                RES_read_address = write_counter;
-                M_AXIS_TVALID  = 1;                        
-                if (write_counter >= NUMBER_OF_OUTPUT_WORDS)
-                begin
-                    M_AXIS_TLAST  = 1;
-                    write_counter_en   =0;
-                    write_counter_rst  =1;
-                end
-                else begin
-                    M_AXIS_TLAST  = 0;
-                    write_counter_en   =1;
-                    write_counter_rst  =0;
-                end
+            M_AXIS_TDATA  = RES_read_data_out;
+//            M_AXIS_TDATA  = write_counter;
+            RES_read_en = 1;
+            RES_read_address = write_counter;
+            M_AXIS_TVALID  = 1;                        
+            if (write_counter >= NUMBER_OF_OUTPUT_WORDS)
+            begin
+                M_AXIS_TLAST  = 1;
+                write_counter_en   =0;
+                write_counter_rst  =1;
             end
+            else begin
+                M_AXIS_TLAST  = 0;
+                write_counter_en   =1;
+                write_counter_rst  =0;
+            end
+            
 
         end
       endcase

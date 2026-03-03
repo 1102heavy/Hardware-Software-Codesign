@@ -29,8 +29,8 @@ DEFAULT SET TO 0x01000000
 #define RX_BUFFER_HIGH		(MEM_BASE_ADDR + 0x004FFFFF)
 
 /***************** Macros *********************/
-#define NUMBER_OF_INPUT_WORDS 130  // length of an input vector
-#define NUMBER_OF_OUTPUT_WORDS 16  // length of an input vector
+#define NUMBER_OF_INPUT_WORDS 520  // length of an input vector
+#define NUMBER_OF_OUTPUT_WORDS 64  // length of an input vector
 #define NUMBER_OF_TEST_VECTORS 1  // number of such test vectors (cases)
 
 #define DMA_DEV_ID        XPAR_XAXIDMA_0_BASEADDR
@@ -386,8 +386,8 @@ int XLlFifoPollingExample(XLlFifo *InstancePtr, UINTPTR BaseAddress)
 		    uart_read_u8_csv(UART_BASEADDR, &B_Matrix[i], &SourceBuffer[i + TOTAL_MATRIX_A_ELEMENTS]);
         }
 		for (word_cnt=0 ; word_cnt < NUMBER_OF_INPUT_WORDS ; word_cnt++){
-			// test_input_memory[word_cnt] = SourceBuffer[word_cnt];
-			test_input_memory[word_cnt] = 100;
+			test_input_memory[word_cnt] = SourceBuffer[word_cnt];
+			// test_input_memory[word_cnt] = 100;
 		}
 		
 
@@ -398,7 +398,13 @@ int XLlFifoPollingExample(XLlFifo *InstancePtr, UINTPTR BaseAddress)
 		Xil_DCacheFlushRange((u32)(test_input_memory), 4*NUMBER_OF_INPUT_WORDS);
 		u32 t0 = XTmrCtr_GetValue(TmrCtrInstancePtr, TIMER_COUNTER_0);
 
-		Status = XAxiDma_SimpleTransfer(&AxiDma,(u32) (test_input_memory), 4*NUMBER_OF_INPUT_WORDS, XAXIDMA_DMA_TO_DEVICE);
+		Status = XAxiDma_SimpleTransfer(&AxiDma,(u32) (result_memory), 4*NUMBER_OF_OUTPUT_WORDS, XAXIDMA_DEVICE_TO_DMA);//rx
+
+		if (Status != XST_SUCCESS) {
+		  return XST_FAILURE;
+		}
+		
+		Status = XAxiDma_SimpleTransfer(&AxiDma,(u32) (test_input_memory), 4*NUMBER_OF_INPUT_WORDS, XAXIDMA_DMA_TO_DEVICE);//tx
 
 		if (Status != XST_SUCCESS) {
 		  return XST_FAILURE;
@@ -411,13 +417,8 @@ int XLlFifoPollingExample(XLlFifo *InstancePtr, UINTPTR BaseAddress)
 
 		/************************** Receive the Data Stream *****************************/
 
-		xil_printf(" Receiving data for test case %d ... \r\n", test_case_cnt);
+		//xil_printf(" Receiving data for test case %d ... \r\n", test_case_cnt);
 
-		Status = XAxiDma_SimpleTransfer(&AxiDma,(u32) (result_memory), 4*NUMBER_OF_OUTPUT_WORDS, XAXIDMA_DEVICE_TO_DMA);
-
-		if (Status != XST_SUCCESS) {
-		  return XST_FAILURE;
-		}
 		while (XAxiDma_Busy(&AxiDma,XAXIDMA_DEVICE_TO_DMA)) {
 			//wait for transfer to complete
 		}

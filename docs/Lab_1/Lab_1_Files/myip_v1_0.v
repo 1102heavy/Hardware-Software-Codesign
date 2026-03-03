@@ -76,9 +76,9 @@ module myip_v1_0
 
 // RAM parameters for assignment 1
 //test 1
-  localparam A_depth_bits = 3;    // 8 elements (A is a 2x4 matrix)
-  localparam B_depth_bits = 2;   // 4 elements (B is a 4x1 matrix)
-  localparam RES_depth_bits = 1;  // 2 elements (RES is a 2x1 matrix)
+  localparam A_depth_bits = 9;    // 8 elements (A is a 2x4 matrix)
+  localparam B_depth_bits = 3;   // 4 elements (B is a 4x1 matrix)
+  localparam RES_depth_bits = 6;  // 2 elements (RES is a 2x1 matrix)
 
 // test 2  
 //    localparam A_depth_bits   = 5;   // 32 elements (A is 4x8)
@@ -108,6 +108,15 @@ module myip_v1_0
   reg  RES_read_en;                // myip_v1_0 -> RES_RAM. To be assigned within myip_v1_0. Possibly reg.
   reg  [RES_depth_bits-1:0] RES_read_address;  // myip_v1_0 -> RES_RAM. To be assigned within myip_v1_0. Possibly reg.
   wire  [width-1:0] RES_read_data_out;      // RES_RAM -> myip_v1_0
+  
+  
+  reg  TEST_write_en;                // myip_v1_0 -> A_RAM. To be assigned within myip_v1_0. Possibly reg.
+  reg  [A_depth_bits-1:0] TEST_write_address;    // myip_v1_0 -> A_RAM. To be assigned within myip_v1_0. Possibly reg. 
+  reg  [width-1:0] TEST_write_data_in;      // myip_v1_0 -> A_RAM. To be assigned within myip_v1_0. Possibly reg.
+  reg  TEST_read_en;                // matrix_multiply_0 -> A_RAM.
+  reg  [A_depth_bits-1:0] TEST_read_address;    // matrix_multiply_0 -> A_RAM.
+  wire  [width-1:0] TEST_read_data_out;      // A_RAM -> matrix_multiply_0.
+  
   
   // wires (or regs) to connect to matrix_multiply for assignment 1
     reg  Start = 0;                 // myip_v1_0 -> matrix_multiply_0. To be assigned within myip_v1_0. Possibly reg.
@@ -290,9 +299,16 @@ always @(*) // outputs
       B_write_en = 0;
       B_write_address = 0;
       B_write_data_in = 0; //Discard rest of the 32 bits   
+
       
       RES_read_en = 0;
       RES_read_address = 0;
+      
+      TEST_read_en = 0;
+      TEST_read_address = 0;   
+      TEST_write_en = 0;
+      TEST_write_address = 0;
+      TEST_write_data_in = 0; //Discard rest of the 32 bits   
       
       Start = 0;
       
@@ -321,18 +337,28 @@ always @(*) // outputs
           RES_read_en = 0;
           RES_read_address = 0;
           
+          TEST_read_en = 0;
+          TEST_read_address = 0;   
+          TEST_write_en = 0;
+          TEST_write_address = 0;
+          TEST_write_data_in = 0; //Discard rest of the 32 bits   
+          
           Start = 0;
           
           if (S_AXIS_TVALID == 1)
           begin
             S_AXIS_TREADY   = 1; 
-            //read_counter_en=1;
-          end
+            A_write_en = 1;
+            A_write_address = read_counter;
+            A_write_data_in = S_AXIS_TDATA [7:0];
+            read_counter_en = 1;
+          end   
+            
         end
 
         Read_Inputs:
         begin
-            M_AXIS_TDATA  =0;
+            M_AXIS_TDATA    = 0;
             M_AXIS_TVALID   = 0;
             M_AXIS_TLAST    = 0;
             S_AXIS_TREADY   = 1; 
@@ -340,7 +366,7 @@ always @(*) // outputs
             write_counter_en   =0;
             write_counter_rst  =0;
             
-            read_counter_en=1;
+            read_counter_en= 1;
             read_counter_rst   = 0;
             
             A_write_en = 0;
@@ -353,6 +379,12 @@ always @(*) // outputs
             
             RES_read_en = 0;
             RES_read_address = 0;
+            
+            TEST_read_en = 0;
+            TEST_read_address = 0;   
+            TEST_write_en = 0;
+            TEST_write_address = 0;
+            TEST_write_data_in = 0; //Discard rest of the 32 bits   
             
             Start = 0;
 //             If we are expecting a variable number of words, we should make use of S_AXIS_TLAST.
@@ -368,7 +400,10 @@ always @(*) // outputs
                     A_write_en = 1;
                     A_write_address = read_counter;
                     A_write_data_in = S_AXIS_TDATA [7:0];
-
+                    
+                    TEST_write_en = 1;
+                    TEST_write_address = read_counter;
+                    TEST_write_data_in = S_AXIS_TDATA [7:0];
                       //Fill in A matrix
 
                 end
@@ -416,6 +451,12 @@ always @(*) // outputs
             RES_read_en = 0;
             RES_read_address = 0;
             
+            TEST_read_en = 0;
+            TEST_read_address = 0;   
+            TEST_write_en = 0;
+            TEST_write_address = 0;
+            TEST_write_data_in = 0; //Discard rest of the 32 bits   
+            
             
             // Coprocessor function to be implemented (matrix multiply) should be here. Right now, nothing happens here.
             //Wait for the calculation to be done and then transition to Write outputs
@@ -424,8 +465,10 @@ always @(*) // outputs
             end 
             else begin
                 RES_read_en = 1;
-                //             RES_write_en <= 0;
+                TEST_read_en = 1;
+                //RES_write_en <= 0;
                 RES_read_address = write_counter;
+                TEST_read_address = write_counter;
                 write_counter_en =1;
                 Start = 0;
             end
@@ -459,14 +502,23 @@ always @(*) // outputs
             RES_read_en = 0;
             RES_read_address = 0;
             
+            TEST_read_en = 0;
+            TEST_read_address = 0;   
+            TEST_write_en = 0;
+            TEST_write_address = 0;
+            TEST_write_data_in = 0; //Discard rest of the 32 bits   
+            
             Start = 0;
           // Coprocessor function (adding 1 to sum in each iteration = adding iteration count to sum) happens here (partly)
             if (M_AXIS_TREADY == 1) 
             begin
                   // M_AXIS_TLAST, though optional in AXIS, is necessary in practice as AXI Stream FIFO and AXI DMA expects it.
                 M_AXIS_TDATA  = RES_read_data_out;
+                //M_AXIS_TDATA  = TEST_read_data_out;
                 RES_read_en = 1;
                 RES_read_address = write_counter;
+                TEST_read_en = 1;
+                TEST_read_address = write_counter;
                 M_AXIS_TVALID  = 1;                        
                 if (write_counter >= NUMBER_OF_OUTPUT_WORDS)
                 begin
@@ -535,6 +587,21 @@ always @(*) // outputs
     .read_address(RES_read_address),
     .read_data_out(RES_read_data_out)
   );
+  
+    memory_RAM 
+  #(
+    .width(width), 
+    .depth_bits(A_depth_bits)
+  ) TEST_RAM 
+  (
+    .clk(ACLK),
+    .write_en(TEST_write_en),
+    .write_address(TEST_write_address),
+    .write_data_in(TEST_write_data_in),
+    .read_en(TEST_read_en),    
+    .read_address(TEST_read_address),
+    .read_data_out(TEST_read_data_out)
+  );
                     
   matrix_multiply 
   #(
@@ -562,4 +629,7 @@ always @(*) // outputs
   );
 
 endmodule            
+
+
+       
                                        
