@@ -46,14 +46,14 @@ module tb_myip_v1_0(
                 .M_AXIS_TREADY(M_AXIS_TREADY)
 	);
 	//test 1
-	localparam NUMBER_OF_INPUT_WORDS  = 12;  // length of an input vector test 1: 12, test 2: 40
-	localparam NUMBER_OF_OUTPUT_WORDS  = 2;  // length of an input vector test1: 2 test 2: 4
-	localparam NUMBER_OF_TEST_VECTORS  = 2;  // number of such test vectors (cases)
+//	localparam NUMBER_OF_INPUT_WORDS  = 12;  // length of an input vector test 1: 12, test 2: 40
+//	localparam NUMBER_OF_OUTPUT_WORDS  = 2;  // length of an input vector test1: 2 test 2: 4
+//	localparam NUMBER_OF_TEST_VECTORS  = 2;  // number of such test vectors (cases)
 	
 	//test 2
-//	localparam NUMBER_OF_INPUT_WORDS  = 40;  // length of an input vector test 1: 12, test 2: 40
-//	localparam NUMBER_OF_OUTPUT_WORDS  = 4;  // length of an input vector test1: 2 test 2: 4
-//	localparam NUMBER_OF_TEST_VECTORS  = 2;  // number of such test vectors (cases)
+	localparam NUMBER_OF_INPUT_WORDS  = 520;  // length of an input vector test 1: 12, test 2: 40
+	localparam NUMBER_OF_OUTPUT_WORDS  = 64;  // length of an input vector test1: 2 test 2: 4
+	localparam NUMBER_OF_TEST_VECTORS  = 1;  // number of such test vectors (cases)
 	
 	localparam width  = 8;  // width of an input vector
            
@@ -74,8 +74,8 @@ module tb_myip_v1_0(
            initial
            begin
                	$display("Loading Memory.");
-        		$readmemh("test_input.mem", test_input_memory); // add the .mem file to the project or specify the complete path
-        		$readmemh("test_result_expected.mem", test_result_expected_memory); // add the .mem file to the project or specify the complete path
+        		$readmemh("test2_input.mem", test_input_memory); // add the .mem file to the project or specify the complete path
+        		$readmemh("test2_result_expected.mem", test_result_expected_memory); // add the .mem file to the project or specify the complete path
         		$display("Loaded Memory.");
         		#25						// to make inputs and capture from testbench not aligned with clock edges
                	ARESETN = 1'b0; 		// apply reset (active low)
@@ -95,11 +95,13 @@ module tb_myip_v1_0(
                	//// Input 
 					word_cnt=0;
 					S_AXIS_TVALID = 1'b1;   // data is ready at the input of the coprocessor.
-					while(word_cnt < NUMBER_OF_INPUT_WORDS)
+					S_AXIS_TDATA = test_input_memory[word_cnt+test_case_cnt*NUMBER_OF_INPUT_WORDS];
+					#100;
+					while(word_cnt < NUMBER_OF_INPUT_WORDS-1)
 					begin
 						if(S_AXIS_TREADY)	// S_AXIS_TREADY is asserted by the coprocessor in response to S_AXIS_TVALID
 						begin
-							S_AXIS_TDATA = test_input_memory[word_cnt+test_case_cnt*NUMBER_OF_INPUT_WORDS]; // set the next data ready
+							S_AXIS_TDATA = test_input_memory[word_cnt+test_case_cnt*NUMBER_OF_INPUT_WORDS+1]; // set the next data ready
 							if(word_cnt == NUMBER_OF_INPUT_WORDS-1)
 								S_AXIS_TLAST = 1'b1; 
 							else
@@ -121,6 +123,7 @@ module tb_myip_v1_0(
 					M_AXIS_TREADY = 1'b1;	// we are now ready to receive data
 					while(M_AXIS_TLAST | ~M_AXIS_TLAST_prev) // receive data until the falling edge of M_AXIS_TLAST
 					begin
+					    $display("Recieving.");
 						if(M_AXIS_TVALID)
 						begin
 							result_memory[word_cnt+test_case_cnt*NUMBER_OF_OUTPUT_WORDS] = M_AXIS_TDATA;
@@ -128,8 +131,10 @@ module tb_myip_v1_0(
                                       $time, test_case_cnt, word_cnt, M_AXIS_TDATA, M_AXIS_TDATA,
                                       M_AXIS_TLAST, M_AXIS_TREADY, M_AXIS_TVALID);
 							word_cnt = word_cnt+1;
+							M_AXIS_TREADY = 1'b0;
 						end
 						#100;
+						
 					end						// receive loop
 					M_AXIS_TREADY = 1'b0;	// not ready to receive data from the co-processor anymore.				
 				end							// next test vector
