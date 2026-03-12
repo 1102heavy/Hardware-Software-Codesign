@@ -21,7 +21,7 @@ typedef ap_axis<32,0,0,0> AXIS;
 
 /***************** Coprocessor function declaration *********************/
 
-void myip_v1_0_HLS(hls::stream<AXIS>& S_AXIS, hls::stream<AXIS>& M_AXIS);
+void myip_v1_0_HLS_optimised(hls::stream<AXIS>& S_AXIS, hls::stream<AXIS>& M_AXIS);
 
 
 /***************** Macros *********************/
@@ -151,7 +151,7 @@ int main()
 
 		/********************* Call the hardware function (invoke the co-processor / ip) ***************/
 
-		myip_v1_0_HLS(S_AXIS, M_AXIS);
+		myip_v1_0_HLS_optimised(S_AXIS, M_AXIS);
 
 
 		/******************** Output from Coprocessor : Receive the Data Stream ***********************/

@@ -1,0 +1,1109 @@
+Zynq MP First Stage Boot Loader 
+Release 2025.2   Mar 11 2026  -  09:14:38
+PMU-FW is not running, certain applications may not be supported.
+beginning of programme
+Timer initialising1.1
+Zynq MP First Stage Boot Loader 
+Release 2025.2   Mar 11 2026  -  09:14:38
+PMU-FW is not running, certain applications may not be supported.
+beginning of programme
+Timer initialising1.1
+Timer initialisiation successful
+BOOT
+CYC_MATRIX_MULTIPLY_Software=2158
+
+ Transmitting Data for DMA_0(HDL)
+CYC_DMA_0(HDL)=2343
+
+DMA0 Calculation Success
+ Transmitting Data for DMA_1(HLS)
+CYC_DMA_1(HLS)=4021
+
+DMA1 Calculation Success
+ Transmitting Data for DMA_2(HLS Optimised)
+CYC_DMA_2(HDL Optimised)=3550
+
+DMA2 Calculation Success
+CYC_FIFO=51423
+
+CO_PROCESSOR_RES
+154
+
+74
+
+146
+
+119
+
+78
+
+160
+
+175
+
+89
+
+88
+
+84
+
+92
+
+162
+
+145
+
+92
+
+98
+
+134
+
+163
+
+184
+
+103
+
+177
+
+134
+
+60
+
+170
+
+83
+
+200
+
+140
+
+80
+
+149
+
+123
+
+112
+
+117
+
+93
+
+91
+
+192
+
+85
+
+142
+
+99
+
+186
+
+75
+
+183
+
+196
+
+171
+
+140
+
+109
+
+88
+
+90
+
+183
+
+134
+
+69
+
+105
+
+185
+
+158
+
+217
+
+39
+
+78
+
+124
+
+188
+
+169
+
+185
+
+196
+
+145
+
+186
+
+112
+
+178
+
+RES_Softwre
+154
+
+74
+
+146
+
+119
+
+78
+
+160
+
+175
+
+89
+
+88
+
+84
+
+92
+
+162
+
+145
+
+92
+
+98
+
+134
+
+163
+
+184
+
+103
+
+177
+
+134
+
+60
+
+170
+
+83
+
+200
+
+140
+
+80
+
+149
+
+123
+
+112
+
+117
+
+93
+
+91
+
+192
+
+85
+
+142
+
+99
+
+186
+
+75
+
+183
+
+196
+
+171
+
+140
+
+109
+
+88
+
+90
+
+183
+
+134
+
+69
+
+105
+
+185
+
+158
+
+217
+
+39
+
+78
+
+124
+
+188
+
+169
+
+185
+
+196
+
+145
+
+186
+
+112
+
+178
+
+Xilinx Zynq MP First Stage Boot Loader 
+Release 2020.2   Apr 22 2021  -  17:48:34
+MultiBootOffset: 0x40
+Reset Mode:System Reset
+Platform: Silicon (4.0), Running on A53-0 (64-bit) Processor, Device Name: XCZUUNKNEG
+QSPI 32 bit Boot Mode 
+FlashID=0x20 0xBB 0x20
+8êŠUjT”'$HPª£ running on XCK26/silicon v4/RTL5.1 at 0xfffea000
+NOTICE:  BL31: v2.2(release):xilinx-v2020.2.2-k26
+NOTICE:  BL31: Built : 17:45:02, Apr 22 2021
+
+
+U-Boot 2020.01 (Apr 22 2021 - 17:47:18 +0000)
+
+Model: ZynqMP SMK-K26 Rev1/B/A
+Board: Xilinx ZynqMP
+DRAM:  4 GiB
+PMUFW:v1.1
+Xilinx I2C FRU format at nvmem0:
+ Manufacturer Name: XILINX
+ Product Name: SMK-K26-XCL2G
+ Serial No: XFL15T5JGXXV
+ Part Number: 5057-01  
+ File ID: 0x0
+ Revision Number: 1
+Xilinx I2C FRU format at nvmem1:
+ Manufacturer Name: XILINX
+ Product Name: SCK-KV-G        
+ Serial No: XFL12WVSPQXJ
+ Part Number: 5066-01  
+ File ID: 0x0
+ Revision Number: 1
+EL Level:EL2
+Chip ID:xck26
+NAND:  0 MiB
+MMC:   mmc@ff170000: 1
+In:    serial@ff010000
+Out:   serial@ff010000
+Err:   serial@ff010000
+Bootmode: QSPI_MODE
+Reset reason:SOFT 
+Net:   No ethernet found.
+Hit any key to stop autoboot:  2  1  0 
+  *** U-Boot Boot Menu ***  Press UP/DOWN to move, ENTER to select     Auto-Select - 1.CC boot 2.SOM boot     Carrier Card (CC) boot device     System on Module (SOM) boot device     U-Boot console  Hit any key to stop autoboot:  5  4  3  2  1  0 switch to partitions #0, OK
+mmc1 is current device
+Scanning mmc 1:1...
+Found U-Boot script /boot.scr.uimg
+8001 bytes read in 19 ms (411.1 KiB/s)
+## Executing script at 20000000
+Selecting DT for Kria boards
+Kria DT: #conf-smk-k26-revA-sck-kv-g-revB
+Configuring the cma value based on the board type
+cma=1000M
+Loading image.fit
+70392632 bytes read in 8420 ms (8 MiB/s)
+## Loading kernel from FIT Image at 10000000 ...
+   Using 'conf-smk-k26-revA-sck-kv-g-revB' configuration
+   Trying 'kernel-1' kernel subimage
+     Description:  Ubuntu kernel
+     Type:         Kernel Image
+     Compression:  gzip compressed
+     Data Start:   0x100000ec
+     Data Size:    17487837 Bytes = 16.7 MiB
+     Architecture: AArch64
+     OS:           Linux
+     Load Address: 0x00200000
+     Entry Point:  0x00200000
+     Hash algo:    sha1
+     Hash value:   3f84833e964507e7d49e3bb6941568dd7254a554
+   Verifying Hash Integrity ... sha1+ OK
+## Loading ramdisk from FIT Image at 10000000 ...
+   Using 'conf-smk-k26-revA-sck-kv-g-revB' configuration
+   Trying 'ramdisk-1' ramdisk subimage
+     Description:  Ubuntu ramdisk
+     Type:         RAMDisk Image
+     Compression:  uncompressed
+     Data Start:   0x110ad9bc
+     Data Size:    52641694 Bytes = 50.2 MiB
+     Architecture: AArch64
+     OS:           Linux
+     Load Address: unavailable
+     Entry Point:  unavailable
+     Hash algo:    sha1
+     Hash value:   b1647cbf2c9e66ccb3a180af857cd0855754e49e
+   Verifying Hash Integrity ... sha1+ OK
+## Loading fdt from FIT Image at 10000000 ...
+   Using 'conf-smk-k26-revA-sck-kv-g-revB' configuration
+   Trying 'fdt-smk-k26-revA-sck-kv-g-revB.dtb' fdt subimage
+     Description:  Flattened device tree blob - smk-k26-revA-sck-kv-g-revB
+     Type:         Flat Device Tree
+     Compression:  uncompressed
+     Data Start:   0x1430bc2c
+     Data Size:    43426 Bytes = 42.4 KiB
+     Architecture: AArch64
+     Load Address: 0x44000000
+     Hash algo:    sha1
+     Hash value:   4b9967e4e9de3c3b185ac037c00d9dbb4226a75a
+   Verifying Hash Integrity ... sha1+ OK
+   Loading fdt from 0x1430bc2c to 0x44000000
+   Booting using the fdt blob at 0x44000000
+   Uncompressing Kernel Image
+   Loading Ramdisk to 75dcc000, end 78ffff9e ... OK
+   Loading Device Tree to 000000000fff2000, end 000000000ffff9a1 ... OK
+
+Starting kernel ...
+
+[    0.000000] Booting Linux on physical CPU 0x0000000000 [0x410fd034]
+[    0.000000] Linux version 5.15.0-1057-xilinx-zynqmp (buildd@bos03-arm64-024) (gcc (Ubuntu 11.4.0-1ubuntu1~22.04.2) 11.4.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #61-Ubuntu SMP Thu Sep 25 08:24:38 UTC 2025 (Ubuntu 5.15.0-1057.61-xilinx-zynqmp 5.15.189)
+[    0.000000] Machine model: ZynqMP KV260 revB
+[    0.000000] efi: UEFI not found.
+[    0.000000] earlycon: cdns0 at MMIO 0x00000000ff010000 (options '115200n8')
+[    0.000000] printk: bootconsole [cdns0] enabled
+[    0.000000] NUMA: No NUMA configuration found
+[    0.000000] NUMA: Faking a node at [mem 0x0000000000000000-0x000000087fffffff]
+[    0.000000] NUMA: NODE_DATA [mem 0x87f7c8340-0x87f7ccfff]
+[    0.000000] Zone ranges:
+[    0.000000]   DMA      [mem 0x0000000000000000-0x00000000ffffffff]
+[    0.000000]   DMA32    empty
+[    0.000000]   Normal   [mem 0x0000000100000000-0x000000087fffffff]
+[    0.000000]   Device   empty
+[    0.000000] Movable zone start for each node
+[    0.000000] Early memory node ranges
+[    0.000000]   node   0: [mem 0x0000000000000000-0x000000007fefffff]
+[    0.000000]   node   0: [mem 0x0000000800000000-0x000000087fffffff]
+[    0.000000] Initmem setup node 0 [mem 0x0000000000000000-0x000000087fffffff]
+[    0.000000] On node 0, zone Normal: 256 pages in unavailable ranges
+[    0.000000] cma: Reserved 1000 MiB at 0x0000000037400000
+[    0.000000] psci: probing for conduit method from DT.
+[    0.000000] psci: PSCIv1.1 detected in firmware.
+[    0.000000] psci: Using standard PSCI v0.2 function IDs
+[    0.000000] psci: MIGRATE_INFO_TYPE not supported.
+[    0.000000] psci: SMC Calling Convention v1.1
+[    0.000000] percpu: Embedded 31 pages/cpu s87896 r8192 d30888 u126976
+[    0.000000] Detected VIPT I-cache on CPU0
+[    0.000000] CPU features: detected: ARM erratum 845719
+[    0.000000] Built 1 zonelists, mobility grouping on.  Total pages: 1031940
+[    0.000000] Policy zone: Normal
+[    0.000000] Kernel command line:  root=LABEL=writable rootwait earlycon console=ttyPS1,115200 console=tty1 clk_ignore_unused uio_pdrv_genirq.of_id=generic-uio xilinx_tsn_ep.st_pcp=4 cma=1000M 
+[    0.000000] Dentry cache hash table entries: 524288 (order: 10, 4194304 bytes, linear)
+[    0.000000] Inode-cache hash table entries: 262144 (order: 9, 2097152 bytes, linear)
+[    0.000000] mem auto-init: stack:off, heap alloc:on, heap free:off
+[    0.000000] software IO TLB: mapped [mem 0x000000007bf00000-0x000000007ff00000] (64MB)
+[    0.000000] Memory: 2922224K/4193280K available (21248K kernel code, 3332K rwdata, 15672K rodata, 6912K init, 1340K bss, 247056K reserved, 1024000K cma-reserved)
+[    0.000000] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=4, Nodes=1
+[    0.000000] ftrace: allocating 67508 entries in 264 pages
+[    0.000000] ftrace: allocated 264 pages with 2 groups
+[    0.000000] trace event string verifier disabled
+[    0.000000] rcu: Hierarchical RCU implementation.
+[    0.000000] rcu: RCU event tracing is enabled.
+[    0.000000] Rude variant of Tasks RCU enabled.
+[    0.000000] Tracing variant of Tasks RCU enabled.
+[    0.000000] rcu: RCU calculated value of scheduler-enlistment delay is 25 jiffies.
+[    0.000000] NR_IRQS: 64, nr_irqs: 64, preallocated irqs: 0
+[    0.000000] GIC: Adjusting CPU interface base to 0x00000000f902f000
+[    0.000000] Root IRQ handler: gic_handle_irq
+[    0.000000] GIC: Using split EOI/Deactivate mode
+[    0.000000] arch_timer: cp15 timer(s) running at 99.99MHz (phys).
+[    0.000000] clocksource: arch_sys_counter: mask: 0x1ffffffffffffff max_cycles: 0x171015c90f, max_idle_ns: 440795203080 ns
+[    0.000000] sched_clock: 57 bits at 99MHz, resolution 10ns, wraps every 4398046511101ns
+[    0.008239] Console: colour dummy device 80x25
+[    0.012375] printk: console [tty1] enabled
+[    0.016437] printk: bootconsole [cdns0] disabled
+[    0.000000] Booting Linux on physical CPU 0x0000000000 [0x410fd034]
+[    0.000000] Linux version 5.15.0-1057-xilinx-zynqmp (buildd@bos03-arm64-024) (gcc (Ubuntu 11.4.0-1ubuntu1~22.04.2) 11.4.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #61-Ubuntu SMP Thu Sep 25 08:24:38 UTC 2025 (Ubuntu 5.15.0-1057.61-xilinx-zynqmp 5.15.189)
+[    0.000000] Machine model: ZynqMP KV260 revB
+[    0.000000] efi: UEFI not found.
+[    0.000000] earlycon: cdns0 at MMIO 0x00000000ff010000 (options '115200n8')
+[    0.000000] printk: bootconsole [cdns0] enabled
+[    0.000000] NUMA: No NUMA configuration found
+[    0.000000] NUMA: Faking a node at [mem 0x0000000000000000-0x000000087fffffff]
+[    0.000000] NUMA: NODE_DATA [mem 0x87f7c8340-0x87f7ccfff]
+[    0.000000] Zone ranges:
+[    0.000000]   DMA      [mem 0x0000000000000000-0x00000000ffffffff]
+[    0.000000]   DMA32    empty
+[    0.000000]   Normal   [mem 0x0000000100000000-0x000000087fffffff]
+[    0.000000]   Device   empty
+[    0.000000] Movable zone start for each node
+[    0.000000] Early memory node ranges
+[    0.000000]   node   0: [mem 0x0000000000000000-0x000000007fefffff]
+[    0.000000]   node   0: [mem 0x0000000800000000-0x000000087fffffff]
+[    0.000000] Initmem setup node 0 [mem 0x0000000000000000-0x000000087fffffff]
+[    0.000000] On node 0, zone Normal: 256 pages in unavailable ranges
+[    0.000000] cma: Reserved 1000 MiB at 0x0000000037400000
+[    0.000000] psci: probing for conduit method from DT.
+[    0.000000] psci: PSCIv1.1 detected in firmware.
+[    0.000000] psci: Using standard PSCI v0.2 function IDs
+[    0.000000] psci: MIGRATE_INFO_TYPE not supported.
+[    0.000000] psci: SMC Calling Convention v1.1
+[    0.000000] percpu: Embedded 31 pages/cpu s87896 r8192 d30888 u126976
+[    0.000000] Detected VIPT I-cache on CPU0
+[    0.000000] CPU features: detected: ARM erratum 845719
+[    0.000000] Built 1 zonelists, mobility grouping on.  Total pages: 1031940
+[    0.000000] Policy zone: Normal
+[    0.000000] Kernel command line:  root=LABEL=writable rootwait earlycon console=ttyPS1,115200 console=tty1 clk_ignore_unused uio_pdrv_genirq.of_id=generic-uio xilinx_tsn_ep.st_pcp=4 cma=1000M 
+[    0.000000] Dentry cache hash table entries: 524288 (order: 10, 4194304 bytes, linear)
+[    0.000000] Inode-cache hash table entries: 262144 (order: 9, 2097152 bytes, linear)
+[    0.000000] mem auto-init: stack:off, heap alloc:on, heap free:off
+[    0.000000] software IO TLB: mapped [mem 0x000000007bf00000-0x000000007ff00000] (64MB)
+[    0.000000] Memory: 2922224K/4193280K available (21248K kernel code, 3332K rwdata, 15672K rodata, 6912K init, 1340K bss, 247056K reserved, 1024000K cma-reserved)
+[    0.000000] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=4, Nodes=1
+[    0.000000] ftrace: allocating 67508 entries in 264 pages
+[    0.000000] ftrace: allocated 264 pages with 2 groups
+[    0.000000] trace event string verifier disabled
+[    0.000000] rcu: Hierarchical RCU implementation.
+[    0.000000] rcu: RCU event tracing is enabled.
+[    0.000000] Rude variant of Tasks RCU enabled.
+[    0.000000] Tracing variant of Tasks RCU enabled.
+[    0.000000] rcu: RCU calculated value of scheduler-enlistment delay is 25 jiffies.
+[    0.000000] NR_IRQS: 64, nr_irqs: 64, preallocated irqs: 0
+[    0.000000] GIC: Adjusting CPU interface base to 0x00000000f902f000
+[    0.000000] Root IRQ handler: gic_handle_irq
+[    0.000000] GIC: Using split EOI/Deactivate mode
+[    0.000000] arch_timer: cp15 timer(s) running at 99.99MHz (phys).
+[    0.000000] clocksource: arch_sys_counter: mask: 0x1ffffffffffffff max_cycles: 0x171015c90f, max_idle_ns: 440795203080 ns
+[    0.000000] sched_clock: 57 bits at 99MHz, resolution 10ns, wraps every 4398046511101ns
+[    0.008239] Console: colour dummy device 80x25
+[    0.012375] printk: console [tty1] enabled
+[    0.016437] printk: bootconsole [cdns0] disabled
+[    0.021106] Calibrating delay loop (skipped), value calculated using timer frequency.. 199.99 BogoMIPS (lpj=399996)
+[    0.021123] pid_max: default: 32768 minimum: 301
+[    0.021325] LSM: Security Framework initializing
+[    0.021356] landlock: Up and running.
+[    0.021363] Yama: becoming mindful.
+[    0.021454] AppArmor: AppArmor initialized
+[    0.021643] Mount-cache hash table entries: 8192 (order: 4, 65536 bytes, linear)
+[    0.021666] Mountpoint-cache hash table entries: 8192 (order: 4, 65536 bytes, linear)
+[    0.023556] rcu: Hierarchical SRCU implementation.
+[    0.025174] EFI services will not be available.
+[    0.025586] smp: Bringing up secondary CPUs ...
+[    0.026141] Detected VIPT I-cache on CPU1
+[    0.026190] CPU1: Booted secondary processor 0x0000000001 [0x410fd034]
+[    0.026802] Detected VIPT I-cache on CPU2
+[    0.026826] CPU2: Booted secondary processor 0x0000000002 [0x410fd034]
+[    0.027377] Detected VIPT I-cache on CPU3
+[    0.027400] CPU3: Booted secondary processor 0x0000000003 [0x410fd034]
+[    0.027465] smp: Brought up 1 node, 4 CPUs
+[    0.027501] SMP: Total of 4 processors activated.
+[    0.027509] CPU features: detected: 32-bit EL0 Support
+[    0.027518] CPU features: detected: 32-bit EL1 Support
+[    0.027527] CPU features: detected: CRC32 instructions
+[    0.027586] CPU features: emulated: Privileged Access Never (PAN) using TTBR0_EL1 switching
+[    0.040098] CPU: All CPU(s) started at EL2
+[    0.040151] alternatives: patching kernel code
+[    0.041643] devtmpfs: initialized
+[    0.050634] KASLR disabled due to lack of seed
+[    0.050799] clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 7645041785100000 ns
+[    0.050832] futex hash table entries: 1024 (order: 4, 65536 bytes, linear)
+[    0.076498] pinctrl core: initialized pinctrl subsystem
+[    0.077061] DMI not present or invalid.
+[    0.077705] NET: Registered PF_NETLINK/PF_ROUTE protocol family
+[    0.079624] DMA: preallocated 512 KiB GFP_KERNEL pool for atomic allocations
+[    0.079793] DMA: preallocated 512 KiB GFP_KERNEL|GFP_DMA pool for atomic allocations
+[    0.080057] DMA: preallocated 512 KiB GFP_KERNEL|GFP_DMA32 pool for atomic allocations
+[    0.080150] audit: initializing netlink subsys (disabled)
+[    0.080311] audit: type=2000 audit(0.072:1): state=initialized audit_enabled=0 res=1
+[    0.080896] thermal_sys: Registered thermal governor 'fair_share'
+[    0.080900] thermal_sys: Registered thermal governor 'bang_bang'
+[    0.080910] thermal_sys: Registered thermal governor 'step_wise'
+[    0.080919] thermal_sys: Registered thermal governor 'user_space'
+[    0.080927] thermal_sys: Registered thermal governor 'power_allocator'
+[    0.081084] cpuidle: using governor ladder
+[    0.081116] cpuidle: using governor menu
+[    0.081398] hw-breakpoint: found 6 breakpoint and 4 watchpoint registers.
+[    0.081483] ASID allocator initialised with 65536 entries
+[    0.082095] Serial: AMBA PL011 UART driver
+[    0.106192] HugeTLB registered 1.00 GiB page size, pre-allocated 0 pages
+[    0.106222] HugeTLB registered 32.0 MiB page size, pre-allocated 0 pages
+[    0.106232] HugeTLB registered 2.00 MiB page size, pre-allocated 0 pages
+[    0.106242] HugeTLB registered 64.0 KiB page size, pre-allocated 0 pages
+[    0.177434] raid6: neonx8   gen()  2385 MB/s
+[    0.245473] raid6: neonx8   xor()  1768 MB/s
+[    0.313525] raid6: neonx4   gen()  2429 MB/s
+[    0.381566] raid6: neonx4   xor()  1734 MB/s
+[    0.449620] raid6: neonx2   gen()  2315 MB/s
+[    0.517658] raid6: neonx2   xor()  1581 MB/s
+[    0.585708] raid6: neonx1   gen()  1991 MB/s
+[    0.653752] raid6: neonx1   xor()  1344 MB/s
+[    0.721802] raid6: int64x8  gen()  1518 MB/s
+[    0.789857] raid6: int64x8  xor()   860 MB/s
+[    0.857896] raid6: int64x4  gen()  1777 MB/s
+[    0.925949] raid6: int64x4  xor()   945 MB/s
+[    0.994001] raid6: int64x2  gen()  1554 MB/s
+[    1.062051] raid6: int64x2  xor()   834 MB/s
+[    1.130111] raid6: int64x1  gen()  1148 MB/s
+[    1.198163] raid6: int64x1  xor()   575 MB/s
+[    1.198172] raid6: using algorithm neonx4 gen() 2429 MB/s
+[    1.198180] raid6: .... xor() 1734 MB/s, rmw enabled
+[    1.198188] raid6: using neon recovery algorithm
+[    1.198950] fbcon: Taking over console
+[    1.198983] ACPI: Interpreter disabled.
+[    1.199602] iommu: Default domain type: Translated 
+[    1.199613] iommu: DMA domain TLB invalidation policy: strict mode 
+[    1.200580] SCSI subsystem initialized
+[    1.200874] vgaarb: loaded
+[    1.201010] usbcore: registered new interface driver usbfs
+[    1.201049] usbcore: registered new interface driver hub
+[    1.201077] usbcore: registered new device driver usb
+[    1.201212] mc: Linux media interface: v0.10
+[    1.201259] videodev: Linux video capture interface: v2.00
+[    1.201342] pps_core: LinuxPPS API ver. 1 registered
+[    1.201352] pps_core: Software ver. 5.3.6 - Copyright 2005-2007 Rodolfo Giometti <giometti@linux.it>
+[    1.201371] PTP clock support registered
+[    1.201495] EDAC MC: Ver: 3.0.0
+[    1.202052] zynqmp-ipi-mbox mailbox@ff9905c0: Registered ZynqMP IPI mbox with TX/RX channels.
+[    1.202406] FPGA manager framework
+[    1.202560] Advanced Linux Sound Architecture Driver Initialized.
+[    1.203577] NetLabel: Initializing
+[    1.203587] NetLabel:  domain hash size = 128
+[    1.203594] NetLabel:  protocols = UNLABELED CIPSOv4 CALIPSO
+[    1.203653] NetLabel:  unlabeled traffic allowed by default
+[    1.204242] clocksource: Switched to clocksource arch_sys_counter
+[    1.276751] VFS: Disk quotas dquot_6.6.0
+[    1.276824] VFS: Dquot-cache hash table entries: 512 (order 0, 4096 bytes)
+[    1.277460] AppArmor: AppArmor Filesystem Enabled
+[    1.277526] pnp: PnP ACPI: disabled
+[    1.283935] NET: Registered PF_INET protocol family
+[    1.284088] IP idents hash table entries: 65536 (order: 7, 524288 bytes, linear)
+[    1.285795] tcp_listen_portaddr_hash hash table entries: 2048 (order: 3, 32768 bytes, linear)
+[    1.285869] Table-perturb hash table entries: 65536 (order: 6, 262144 bytes, linear)
+[    1.285920] TCP established hash table entries: 32768 (order: 6, 262144 bytes, linear)
+[    1.286182] TCP bind hash table entries: 32768 (order: 7, 524288 bytes, linear)
+[    1.286546] TCP: Hash tables configured (established 32768 bind 32768)
+[    1.286754] MPTCP token hash table entries: 4096 (order: 4, 98304 bytes, linear)
+[    1.286867] UDP hash table entries: 2048 (order: 4, 65536 bytes, linear)
+[    1.286951] UDP-Lite hash table entries: 2048 (order: 4, 65536 bytes, linear)
+[    1.287168] NET: Registered PF_UNIX/PF_LOCAL protocol family
+[    1.287598] RPC: Registered named UNIX socket transport module.
+[    1.287609] RPC: Registered udp transport module.
+[    1.287617] RPC: Registered tcp transport module.
+[    1.287624] RPC: Registered tcp NFSv4.1 backchannel transport module.
+[    1.287637] NET: Registered PF_XDP protocol family
+[    1.287650] PCI: CLS 0 bytes, default 64
+[    1.287857] Trying to unpack rootfs image as initramfs...
+[    1.290869] hw perfevents: enabled with armv8_pmuv3 PMU driver, 7 counters available
+[    1.291227] kvm [1]: IPA Size Limit: 40 bits
+[    1.293959] kvm [1]: vgic interrupt IRQ9
+[    1.294333] kvm [1]: Hyp mode initialized successfully
+[    1.935256] Initialise system trusted keyrings
+[    1.935339] Key type blacklist registered
+[    1.935643] workingset: timestamp_bits=40 max_order=20 bucket_order=0
+[    1.941275] zbud: loaded
+[    1.942696] squashfs: version 4.0 (2009/01/31) Phillip Lougher
+[    1.944091] NFS: Registering the id_resolver key type
+[    1.944167] Key type id_resolver registered
+[    1.944176] Key type id_legacy registered
+[    1.944318] nfs4filelayout_init: NFSv4 File Layout Driver Registering...
+[    1.944337] nfs4flexfilelayout_init: NFSv4 Flexfile Layout Driver Registering...
+[    1.944386] jffs2: version 2.2. (NAND) (SUMMARY)  Â© 2001-2006 Red Hat, Inc.
+[    1.944703] fuse: init (API version 7.34)
+[    1.945340] integrity: Platform Keyring initialized
+[    1.977445] NET: Registered PF_ALG protocol family
+[    1.977490] xor: measuring software checksum speed
+[    1.978751]    8regs           :  2618 MB/sec
+[    1.979817]    32regs          :  3109 MB/sec
+[    1.981131]    arm64_neon      :  2514 MB/sec
+[    1.981156] xor: using function: 32regs (3109 MB/sec)
+[    1.981176] Key type asymmetric registered
+[    1.981187] Asymmetric key parser 'x509' registered
+[    1.981295] Block layer SCSI generic (bsg) driver version 0.4 loaded (major 239)
+[    1.981527] io scheduler mq-deadline registered
+[    1.981540] io scheduler kyber registered
+[    1.984511] shpchp: Standard Hot Plug PCI Controller Driver version: 0.4
+[    2.027108] Serial: 8250/16550 driver, 4 ports, IRQ sharing enabled
+[    2.028782] Serial: AMBA driver
+[    2.038213] brd: module loaded
+[    2.044270] loop: module loaded
+[    2.047928] mtdoops: mtd device (mtddev=name/number) must be supplied
+[    2.050287] tun: Universal TUN/TAP device driver, 1.6
+[    2.051189] PPP generic driver version 2.4.2
+[    2.051503] usbcore: registered new interface driver asix
+[    2.051595] usbcore: registered new interface driver ax88179_178a
+[    2.051630] usbcore: registered new interface driver cdc_ether
+[    2.051660] usbcore: registered new interface driver net1080
+[    2.051691] usbcore: registered new interface driver cdc_subset
+[    2.051721] usbcore: registered new interface driver zaurus
+[    2.051769] usbcore: registered new interface driver cdc_ncm
+[    2.052484] ehci_hcd: USB 2.0 'Enhanced' Host Controller (EHCI) Driver
+[    2.052515] ehci-pci: EHCI PCI platform driver
+[    2.052562] ohci_hcd: USB 1.1 'Open' Host Controller (OHCI) Driver
+[    2.052580] ohci-pci: OHCI PCI platform driver
+[    2.052612] uhci_hcd: USB Universal Host Controller Interface driver
+[    2.053083] usbcore: registered new interface driver uas
+[    2.053128] usbcore: registered new interface driver usb-storage
+[    2.053473] mousedev: PS/2 mouse device common for all mice
+[    2.053716] i2c_dev: i2c /dev entries driver
+[    2.055289] usbcore: registered new interface driver uvcvideo
+[    2.055308] Driver for 1-wire Dallas network protocol.
+[    2.056496] device-mapper: core: CONFIG_IMA_DISABLE_HTABLE is disabled. Duplicate IMA measurements will not be recorded in the IMA log.
+[    2.056644] device-mapper: uevent: version 1.0.3
+[    2.056927] device-mapper: ioctl: 4.45.0-ioctl (2021-03-22) initialised: dm-devel@redhat.com
+[    2.057056] EDAC MC: ECC not enabled
+[    2.057241] EDAC DEVICE0: Giving out device to module zynqmp-ocm-edac controller zynqmp_ocm: DEV ff960000.memory-controller (INTERRUPT)
+[    2.058375] sdhci: Secure Digital Host Controller Interface driver
+[    2.058389] sdhci: Copyright(c) Pierre Ossman
+[    2.058396] sdhci-pltfm: SDHCI platform and OF driver helper
+[    2.059221] ledtrig-cpu: registered to indicate activity on CPUs
+[    2.059503] zynqmp_firmware_probe Platform Management API v1.1
+[    2.059517] zynqmp_firmware_probe Trustzone version v1.0
+[    2.091605] securefw securefw: securefw probed
+[    2.091937] hid: raw HID events driver (C) Jiri Kosina
+[    2.096380] fpga_manager fpga0: Xilinx ZynqMP FPGA Manager registered
+[    2.097149] usbcore: registered new interface driver snd-usb-audio
+[    2.098196] pktgen: Packet Generator for packet performance testing. Version: 2.75
+[    2.104405] drop_monitor: Initializing network drop monitor service
+[    2.104621] Initializing XFRM netlink socket
+[    2.105188] NET: Registered PF_INET6 protocol family
+[    3.035561] Freeing initrd memory: 51404K
+[    3.064435] Segment Routing with IPv6
+[    3.064525] In-situ OAM (IOAM) with IPv6
+[    3.064612] NET: Registered PF_PACKET protocol family
+[    3.064767] 8021q: 802.1Q VLAN Support v1.8
+[    3.065083] Key type dns_resolver registered
+[    3.065957] registered taskstats version 1
+[    3.066255] Loading compiled-in X.509 certificates
+[    3.068859] Loaded X.509 cert 'Build time autogenerated kernel key: 052c6336ff3a63ccd316b0c18bd35449d9d36fb7'
+[    3.071187] Loaded X.509 cert 'Canonical Ltd. Live Patch Signing 2025 Kmod: d541cef61dc7e793b7eb7e899970a2eef0b5dc8c'
+[    3.073527] Loaded X.509 cert 'Canonical Ltd. Live Patch Signing: 14df34d1a87cf37625abec039ef2bf521249b969'
+[    3.075870] Loaded X.509 cert 'Canonical Ltd. Kernel Module Signing: 88f752e560a1e0737e31163a466ad7b70a850c19'
+[    3.075887] blacklist: Loading compiled-in revocation X.509 certificates
+[    3.075950] Loaded X.509 cert 'Canonical Ltd. Secure Boot Signing: 61482aa2830d0ab2ad5af10b7250da9033ddcef0'
+[    3.076008] Loaded X.509 cert 'Canonical Ltd. Secure Boot Signing (2017): 242ade75ac4a15e50d50c84b0d45ff3eae707a03'
+[    3.076086] Loaded X.509 cert 'Canonical Ltd. Secure Boot Signing (ESM 2018): 365188c1d374d6b07c3c8f240f8ef722433d6a8b'
+[    3.076158] Loaded X.509 cert 'Canonical Ltd. Secure Boot Signing (2019): c0746fd6c5da3ae827864651ad66ae47fe24b3e8'
+[    3.076215] Loaded X.509 cert 'Canonical Ltd. Secure Boot Signing (2021 v1): a8d54bbb3825cfb94fa13c9f8a594a195c107b8d'
+[    3.076295] Loaded X.509 cert 'Canonical Ltd. Secure Boot Signing (2021 v2): 4cf046892d6fd3c9a5b03f98d845f90851dc6a8c'
+[    3.076358] Loaded X.509 cert 'Canonical Ltd. Secure Boot Signing (2021 v3): 100437bb6de6e469b581e61cd66bce3ef4ed53af'
+[    3.076445] Loaded X.509 cert 'Canonical Ltd. Secure Boot Signing (Ubuntu Core 2019): c1d57b8f6b743f23ee41f4f7ee292f06eecadfb9'
+[    3.076757] zswap: loaded using pool lzo/zbud
+[    3.077179] Key type .fscrypt registered
+[    3.077190] Key type fscrypt-provisioning registered
+[    3.079472] Btrfs loaded, crc32c=crc32c-generic, zoned=yes, fsverity=yes
+[    3.159799] cryptd: max_cpu_qlen set to 1000
+[    3.189347] Key type encrypted registered
+[    3.189388] AppArmor: AppArmor sha1 policy hashing enabled
+[    3.189429] ima: No TPM chip found, activating TPM-bypass!
+[    3.189457] Loading compiled-in module X.509 certificates
+[    3.191840] Loaded X.509 cert 'Build time autogenerated kernel key: 052c6336ff3a63ccd316b0c18bd35449d9d36fb7'
+[    3.191859] ima: Allocated hash algorithm: sha1
+[    3.191894] ima: No architecture policies found
+[    3.191962] evm: Initialising EVM extended attributes:
+[    3.191971] evm: security.selinux
+[    3.191979] evm: security.SMACK64
+[    3.191985] evm: security.SMACK64EXEC
+[    3.191992] evm: security.SMACK64TRANSMUTE
+[    3.191999] evm: security.SMACK64MMAP
+[    3.192006] evm: security.apparmor
+[    3.192013] evm: security.ima
+[    3.192019] evm: security.capability
+[    3.192026] evm: HMAC attrs: 0x1
+[    3.204991] zynqmp-pinctrl firmware:zynqmp-firmware:pinctrl: Invalid IO Standard requested for pin 36
+[    3.205080] zynqmp-pinctrl firmware:zynqmp-firmware:pinctrl: Invalid IO Standard requested for pin 37
+[    3.205570] ff010000.serial: ttyPS1 at MMIO 0xff010000 (irq = 51, base_baud = 6249999) is a xuartps
+[    4.856449] printk: console [ttyPS1] enabled
+[    4.861248] of-fpga-region fpga-full: FPGA Region probed
+[    4.867823] xilinx-zynqmp-dma fd500000.dma-controller: ZynqMP DMA driver Probe success
+[    4.875991] xilinx-zynqmp-dma fd510000.dma-controller: ZynqMP DMA driver Probe success
+[    4.884139] xilinx-zynqmp-dma fd520000.dma-controller: ZynqMP DMA driver Probe success
+[    4.892331] xilinx-zynqmp-dma fd530000.dma-controller: ZynqMP DMA driver Probe success
+[    4.900507] xilinx-zynqmp-dma fd540000.dma-controller: ZynqMP DMA driver Probe success
+[    4.908668] xilinx-zynqmp-dma fd550000.dma-controller: ZynqMP DMA driver Probe success
+[    4.916845] xilinx-zynqmp-dma fd560000.dma-controller: ZynqMP DMA driver Probe success
+[    4.925001] xilinx-zynqmp-dma fd570000.dma-controller: ZynqMP DMA driver Probe success
+[    4.933235] xilinx-zynqmp-dma ffa80000.dma-controller: ZynqMP DMA driver Probe success
+[    4.941395] xilinx-zynqmp-dma ffa90000.dma-controller: ZynqMP DMA driver Probe success
+[    4.949556] xilinx-zynqmp-dma ffaa0000.dma-controller: ZynqMP DMA driver Probe success
+[    4.957704] xilinx-zynqmp-dma ffab0000.dma-controller: ZynqMP DMA driver Probe success
+[    4.965875] xilinx-zynqmp-dma ffac0000.dma-controller: ZynqMP DMA driver Probe success
+[    4.974015] xilinx-zynqmp-dma ffad0000.dma-controller: ZynqMP DMA driver Probe success
+[    4.982186] xilinx-zynqmp-dma ffae0000.dma-controller: ZynqMP DMA driver Probe success
+[    4.990351] xilinx-zynqmp-dma ffaf0000.dma-controller: ZynqMP DMA driver Probe success
+[    4.998424] zynqmp_clk_divider_set_rate() set divider failed for dpdma_ref_div1, ret = -13
+[    5.007171] xilinx-zynqmp-dpdma fd4c0000.dma-controller: Xilinx DPDMA engine is probed
+[    5.016775] zynqmp-pinctrl firmware:zynqmp-firmware:pinctrl: Invalid IO Standard requested for pin 76
+[    5.026056] zynqmp-pinctrl firmware:zynqmp-firmware:pinctrl: Invalid IO Standard requested for pin 77
+[    5.035515] zynqmp-pinctrl firmware:zynqmp-firmware:pinctrl: Invalid IO Standard requested for pin 64
+[    5.044786] zynqmp-pinctrl firmware:zynqmp-firmware:pinctrl: Invalid IO Standard requested for pin 65
+[    5.054056] zynqmp-pinctrl firmware:zynqmp-firmware:pinctrl: Invalid IO Standard requested for pin 66
+[    5.063326] zynqmp-pinctrl firmware:zynqmp-firmware:pinctrl: Invalid IO Standard requested for pin 67
+[    5.072596] zynqmp-pinctrl firmware:zynqmp-firmware:pinctrl: Invalid IO Standard requested for pin 68
+[    5.081866] zynqmp-pinctrl firmware:zynqmp-firmware:pinctrl: Invalid IO Standard requested for pin 69
+[    5.091136] zynqmp-pinctrl firmware:zynqmp-firmware:pinctrl: Invalid IO Standard requested for pin 70
+[    5.100407] zynqmp-pinctrl firmware:zynqmp-firmware:pinctrl: Invalid IO Standard requested for pin 71
+[    5.109678] zynqmp-pinctrl firmware:zynqmp-firmware:pinctrl: Invalid IO Standard requested for pin 72
+[    5.118930] zynqmp-pinctrl firmware:zynqmp-firmware:pinctrl: Invalid IO Standard requested for pin 73
+[    5.128182] zynqmp-pinctrl firmware:zynqmp-firmware:pinctrl: Invalid IO Standard requested for pin 74
+[    5.137454] zynqmp-pinctrl firmware:zynqmp-firmware:pinctrl: Invalid IO Standard requested for pin 75
+[    5.146802] zynqmp_pll_disable() clock disable failed for dpll_int, ret = -13
+[    5.154091] macb ff0e0000.ethernet: Not enabling partial store and forward
+[    5.161000] macb ff0e0000.ethernet: invalid hw address, using random
+[    5.177127] macb ff0e0000.ethernet eth0: Cadence GEM rev 0x50070106 at 0xff0e0000 irq 37 (3a:8e:a8:07:8b:1e)
+[    5.187780] xilinx-axipmon ffa00000.perf-monitor: Probed Xilinx APM
+[    5.194440] xilinx-axipmon fd0b0000.perf-monitor: Probed Xilinx APM
+[    5.201041] xilinx-axipmon fd490000.perf-monitor: Probed Xilinx APM
+[    5.207612] xilinx-axipmon ffa10000.perf-monitor: Probed Xilinx APM
+[    5.215377] zynqmp-pinctrl firmware:zynqmp-firmware:pinctrl: Invalid IO Standard requested for pin 53
+[    5.224626] zynqmp-pinctrl firmware:zynqmp-firmware:pinctrl: Invalid IO Standard requested for pin 54
+[    5.233863] zynqmp-pinctrl firmware:zynqmp-firmware:pinctrl: Invalid IO Standard requested for pin 55
+[    5.243097] zynqmp-pinctrl firmware:zynqmp-firmware:pinctrl: Invalid IO Standard requested for pin 56
+[    5.252332] zynqmp-pinctrl firmware:zynqmp-firmware:pinctrl: Invalid IO Standard requested for pin 57
+[    5.261567] zynqmp-pinctrl firmware:zynqmp-firmware:pinctrl: Invalid IO Standard requested for pin 58
+[    5.270803] zynqmp-pinctrl firmware:zynqmp-firmware:pinctrl: Invalid IO Standard requested for pin 59
+[    5.280039] zynqmp-pinctrl firmware:zynqmp-firmware:pinctrl: Invalid IO Standard requested for pin 60
+[    5.289274] zynqmp-pinctrl firmware:zynqmp-firmware:pinctrl: Invalid IO Standard requested for pin 61
+[    5.298514] zynqmp-pinctrl firmware:zynqmp-firmware:pinctrl: Invalid IO Standard requested for pin 62
+[    5.307746] zynqmp-pinctrl firmware:zynqmp-firmware:pinctrl: Invalid IO Standard requested for pin 63
+[    5.335570] xhci-hcd xhci-hcd.0.auto: xHCI Host Controller
+[    5.341098] xhci-hcd xhci-hcd.0.auto: new USB bus registered, assigned bus number 1
+[    5.348864] xhci-hcd xhci-hcd.0.auto: hcc params 0x0238f625 hci version 0x100 quirks 0x0000008002010890
+[    5.358295] xhci-hcd xhci-hcd.0.auto: irq 57, io mem 0xfe200000
+[    5.364383] xhci-hcd xhci-hcd.0.auto: xHCI Host Controller
+[    5.369877] xhci-hcd xhci-hcd.0.auto: new USB bus registered, assigned bus number 2
+[    5.377540] xhci-hcd xhci-hcd.0.auto: Host supports USB 3.0 SuperSpeed
+[    5.384198] usb usb1: New USB device found, idVendor=1d6b, idProduct=0002, bcdDevice= 5.15
+[    5.392466] usb usb1: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+[    5.399686] usb usb1: Product: xHCI Host Controller
+[    5.404565] usb usb1: Manufacturer: Linux 5.15.0-1057-xilinx-zynqmp xhci-hcd
+[    5.411612] usb usb1: SerialNumber: xhci-hcd.0.auto
+[    5.416900] hub 1-0:1.0: USB hub found
+[    5.420672] hub 1-0:1.0: 1 port detected
+[    5.424985] usb usb2: New USB device found, idVendor=1d6b, idProduct=0003, bcdDevice= 5.15
+[    5.433255] usb usb2: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+[    5.440475] usb usb2: Product: xHCI Host Controller
+[    5.445363] usb usb2: Manufacturer: Linux 5.15.0-1057-xilinx-zynqmp xhci-hcd
+[    5.452411] usb usb2: SerialNumber: xhci-hcd.0.auto
+[    5.457658] hub 2-0:1.0: USB hub found
+[    5.461431] hub 2-0:1.0: 1 port detected
+[    5.467801] cdns-wdt fd4d0000.watchdog: Xilinx Watchdog Timer with timeout 60s
+[    5.475382] cdns-wdt ff150000.watchdog: Xilinx Watchdog Timer with timeout 10s
+[    5.484472] zynqmp-pinctrl firmware:zynqmp-firmware:pinctrl: Invalid IO Standard requested for pin 45
+[    5.488530] input: gpio-keys as /devices/platform/gpio-keys/input/input0
+[    5.493758] zynqmp-pinctrl firmware:zynqmp-firmware:pinctrl: Invalid IO Standard requested for pin 39
+[    5.501123] of_cfs_init
+[    5.509690] zynqmp-pinctrl firmware:zynqmp-firmware:pinctrl: Invalid IO Standard requested for pin 40
+[    5.512084] of_cfs_init: OK
+[    5.521327] zynqmp-pinctrl firmware:zynqmp-firmware:pinctrl: Invalid IO Standard requested for pin 41
+[    5.524276] clk: Not disabling unused clocks
+[    5.533358] zynqmp-pinctrl firmware:zynqmp-firmware:pinctrl: Invalid IO Standard requested for pin 42
+[    5.537955] ALSA device list:
+[    5.546820] zynqmp-pinctrl firmware:zynqmp-firmware:pinctrl: Invalid IO Standard requested for pin 46
+[    5.549731]   No soundcards found.
+[    5.558988] zynqmp-pinctrl firmware:zynqmp-firmware:pinctrl: Invalid IO Standard requested for pin 47
+[    5.571604] zynqmp-pinctrl firmware:zynqmp-firmware:pinctrl: Invalid IO Standard requested for pin 48
+[    5.580873] zynqmp-pinctrl firmware:zynqmp-firmware:pinctrl: Invalid IO Standard requested for pin 49
+[    5.590143] zynqmp-pinctrl firmware:zynqmp-firmware:pinctrl: Invalid IO Standard requested for pin 50
+[    5.599417] zynqmp-pinctrl firmware:zynqmp-firmware:pinctrl: Invalid IO Standard requested for pin 51
+[    5.609662] clk: couldn't set sdio1_ref clk rate to 187498123 (-16), current rate: 187499999
+[    5.618472] clk: couldn't set sdio1_ref clk rate to 187498123 (-16), current rate: 187499999
+[    5.658614] mmc1: SDHCI controller on ff170000.mmc [ff170000.mmc] using ADMA 64-bit
+[    5.673084] Freeing unused kernel memory: 6912K
+[    5.731445] Checked W+X mappings: passed, no W+X pages found
+[    5.737226] Run /init as init process
+[    5.772024] mmc1: new high speed SDHC card at address aaaa
+[    5.778223] mmcblk1: mmc1:aaaa SD32G 29.7 GiB 
+[    5.785066]  mmcblk1: p1 p2
+[    6.779860] zynqmp-pinctrl firmware:zynqmp-firmware:pinctrl: Invalid IO Standard requested for pin 24
+[    6.782690] zynqmp-display fd4a0000.display: vtc bridge property not present
+[    6.789249] zynqmp-pinctrl firmware:zynqmp-firmware:pinctrl: Invalid IO Standard requested for pin 25
+[    6.819104] xilinx-dp-snd-codec fd4a0000.display:zynqmp-dp-snd-codec0: Xilinx DisplayPort Sound Codec probed
+[    6.832788] xilinx-dp-snd-pcm zynqmp_dp_snd_pcm0: Xilinx DisplayPort Sound PCM probed
+[    6.844462] spi-nor spi0.0: unrecognized JEDEC id bytes: 00 00 00 00 00 00
+[    6.844539] xilinx-dp-snd-pcm zynqmp_dp_snd_pcm1: Xilinx DisplayPort Sound PCM probed
+[    6.861045] at24 1-0050: supply vcc not found, using dummy regulator
+[    6.868014] at24 1-0050: 8192 byte 24c64 EEPROM, writable, 1 bytes/write
+[    6.875269] at24 1-0051: supply vcc not found, using dummy regulator
+[    6.887652] at24 1-0051: 8192 byte 24c64 EEPROM, writable, 1 bytes/write
+[    6.895751] rtc_zynqmp ffa60000.rtc: registered as rtc0
+[    6.895776] cdns-i2c ff030000.i2c: 400 kHz mmio ff030000 irq 39
+[    6.901313] rtc_zynqmp ffa60000.rtc: setting system clock to 1970-01-01T00:00:13 UTC (13)
+[    6.917192] xilinx-dp-snd-card fd4a0000.display:zynqmp-dp-snd-card: Xilinx DisplayPort Sound Card probed
+[    6.928886] xlnx-drm xlnx-drm.0: bound fd4a0000.display (ops zynqmp_dpsub_component_ops [zynqmp_dpsub])
+[    7.146959] Console: switching to colour frame buffer device 128x48
+[    7.172802] zynqmp-display fd4a0000.display: [drm] fb0: xlnxdrmfb frame buffer device
+[    7.200731] [drm] Initialized xlnx 1.0.0 20130509 for fd4a0000.display on minor 0
+[    7.218015] zynqmp-display fd4a0000.display: ZynqMP DisplayPort Subsystem driver probed
+[    7.606161] da9121 1-0033: Device detected (device-ID: 0x05, var-ID: 0x21, DA9131)
+[    7.616805] da9121 1-0032: Device detected (device-ID: 0x05, var-ID: 0x20, DA9130)
+[    8.011927] async_tx: api initialized (async)
+[    8.468751] EXT4-fs (mmcblk1p2): mounted filesystem with ordered data mode. Opts: (null). Quota mode: none.
+[    9.455549] systemd[1]: System time before build time, advancing clock.
+[    9.547312] systemd[1]: Inserted module 'autofs4'
+[    9.634777] systemd[1]: systemd 249.11-0ubuntu3.17 running in system mode (+PAM +AUDIT +SELINUX +APPARMOR +IMA +SMACK +SECCOMP +GCRYPT +GNUTLS +OPENSSL +ACL +BLKID +CURL +ELFUTILS +FIDO2 +IDN2 -IDN +IPTC +KMOD +LIBCRYPTSETUP +LIBFDISK +PCRE2 -PWQUALITY -P11KIT -QRENCODE +BZIP2 +LZ4 +XZ +ZLIB +ZSTD -XKBCOMMON +UTMP +SYSVINIT default-hierarchy=unified)
+[    9.670184] systemd[1]: Detected architecture arm64.
+[    9.685266] systemd[1]: Hostname set to <kria>.
+[   10.427322] random: lvmconfig: uninitialized urandom read (4 bytes read)
+[   10.856470] systemd[1]: Configuration file /run/systemd/system/netplan-ovs-cleanup.service is marked world-inaccessible. This has no effect as configuration data is accessible via APIs without restrictions. Proceeding anyway.
+[   11.039294] systemd[1]: /lib/systemd/system/snapd.service:23: Unknown key name 'RestartMode' in section 'Service', ignoring.
+[   11.138549] random: systemd: uninitialized urandom read (16 bytes read)
+[   11.343013] systemd[1]: Queued start job for default target Graphical Interface.
+[   11.354262] random: systemd: uninitialized urandom read (16 bytes read)
+[   11.366302] systemd[1]: Created slice Slice /system/modprobe.
+[   11.378164] systemd[1]: Created slice Slice /system/serial-getty.
+[   11.390261] systemd[1]: Created slice Slice /system/systemd-fsck.
+[   11.401527] systemd[1]: Created slice User and Session Slice.
+[   11.411651] systemd[1]: Started Dispatch Password Requests to Console Directory Watch.
+[   11.423882] systemd[1]: Started Forward Password Requests to Wall Directory Watch.
+[   11.435731] random: systemd: uninitialized urandom read (16 bytes read)
+[   11.444811] systemd[1]: Set up automount Arbitrary Executable File Formats File System Automount Point.
+[   11.458319] random: systemd: uninitialized urandom read (16 bytes read)
+[   11.466800] systemd[1]: Reached target Local Encrypted Volumes.
+[   11.477020] random: systemd: uninitialized urandom read (16 bytes read)
+[   11.485503] systemd[1]: Reached target Slice Units.
+[   11.494408] systemd[1]: Reached target Mounting snaps.
+[   11.503594] systemd[1]: Reached target Swaps.
+[   11.511939] systemd[1]: Reached target Local Verity Protected Volumes.
+[   11.522834] systemd[1]: Listening on Device-mapper event daemon FIFOs.
+[   11.533835] systemd[1]: Listening on LVM2 poll daemon socket.
+[   11.544077] systemd[1]: Listening on multipathd control socket.
+[   11.568801] systemd[1]: Listening on RPCbind Server Activation Socket.
+[   11.580264] systemd[1]: Listening on Syslog Socket.
+[   11.589532] systemd[1]: Listening on fsck to fsckd communication Socket.
+[   11.600427] systemd[1]: Listening on initctl Compatibility Named Pipe.
+[   11.612097] systemd[1]: Listening on Journal Audit Socket.
+[   11.621989] systemd[1]: Listening on Journal Socket (/dev/log).
+[   11.632424] systemd[1]: Listening on Journal Socket.
+[   11.642035] systemd[1]: Listening on udev Control Socket.
+[   11.651682] systemd[1]: Listening on udev Kernel Socket.
+[   11.664509] systemd[1]: Mounting Huge Pages File System...
+[   11.677853] systemd[1]: Mounting POSIX Message Queue File System...
+[   11.692287] systemd[1]: Mounting Kernel Debug File System...
+[   11.706113] systemd[1]: Mounting Kernel Trace File System...
+[   11.722992] systemd[1]: Starting Journal Service...
+[   11.731988] systemd[1]: Condition check resulted in Kernel Module supporting RPCSEC_GSS being skipped.
+[   11.747978] systemd[1]: Starting Set the console keyboard layout...
+[   11.767270] systemd[1]: Starting Create List of Static Device Nodes...
+[   11.781926] systemd[1]: Starting Monitoring of LVM2 mirrors, snapshots etc. using dmeventd or progress polling...
+[   11.796038] systemd[1]: Condition check resulted in LXD - agent being skipped.
+[   11.809966] systemd[1]: Starting Load Kernel Module configfs...
+[   11.824838] systemd[1]: Starting Load Kernel Module drm...
+[   11.839295] systemd[1]: Starting Load Kernel Module efi_pstore...
+[   11.855157] systemd[1]: Starting Load Kernel Module fuse...
+[   11.865689] systemd[1]: Condition check resulted in File System Check on Root Device being skipped.
+[   11.895395] systemd[1]: Starting Load Kernel Modules...
+[   11.916034] systemd[1]: Starting Remount Root and Kernel File Systems...
+[   11.931776] systemd[1]: Starting Coldplug All udev Devices...
+[   11.956889] systemd[1]: Mounted Huge Pages File System.
+[   11.965545] EXT4-fs (mmcblk1p2): re-mounted. Opts: discard,errors=remount-ro. Quota mode: none.
+[   11.981311] systemd[1]: Started Journal Service.
+[   12.003657] dmaproxy: module is from the staging directory, the quality is unknown, you have been warned.
+[   12.072416] usb5744 1-002d: Sending boot command failed
+[   12.126188] alua: device handler registered
+[   12.133196] systemd-journald[499]: Received client request to flush runtime journal.
+[   12.150418] emc: device handler registered
+[   12.158746] systemd-journald[499]: File /var/log/journal/ff5710002ba2401f8fc3ae7a4859d432/system.journal corrupted or uncleanly shut down, renaming and replacing.
+[   12.189693] rdac: device handler registered
+[   12.304276] usb 1-1: new high-speed USB device number 2 using xhci-hcd
+[   12.460978] usb 1-1: New USB device found, idVendor=0424, idProduct=2744, bcdDevice= 2.21
+[   12.470693] usb 1-1: New USB device strings: Mfr=1, Product=2, SerialNumber=0
+[   12.479279] usb 1-1: Product: USB2744
+[   12.484365] usb 1-1: Manufacturer: Microchip Tech
+[   15.057425] tpm tpm0: A TPM error (256) occurred attempting the self test
+[   26.333026] OF: overlay: WARNING: memory leak will occur if overlay removed, property: /fpga-full/firmware-name
+[   26.344341] OF: overlay: WARNING: memory leak will occur if overlay removed, property: /fpga-full/resets
+[   37.771272] zocl-drm axi:zyxclmm_drm: IRQ index 0 not found
+
+Ubuntu 22.04.5 LTS kria ttyPS1
+
+kria login: lknlk     ceg5203*
+Password: 
+
+Login incorrect
+kria login: ubuntu
+Password: 
+Welcome to Ubuntu 22.04.5 LTS (GNU/Linux 5.15.0-1057-xilinx-zynqmp aarch64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ System information as of Wed Mar 11 09:28:58 UTC 2026
+
+  System load:  0.13               Processes:             228
+  Usage of /:   35.2% of 28.17GB   Users logged in:       1
+  Memory usage: 14%                IPv4 address for eth0: 10.42.0.249
+  Swap usage:   0%
+
+ * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s
+   just raised the bar for easy, resilient and secure K8s cluster deployment.
+
+   https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+
+Expanded Security Maintenance for Applications is not enabled.
+
+0 updates can be applied immediately.
+
+81 additional security updates can be applied with ESM Apps.
+Learn more about enabling ESM Apps service at https://ubuntu.com/esm
+
+
+The list of available updates is more than a week old.
+To check for new updates run: sudo apt update
+New release '24.04.4 LTS' available.
+Run 'do-release-upgrade' to upgrade to it.
+
+
+Last login: Wed Mar 11 08:48:36 UTC 2026 from 10.42.0.1 on pts/0
+ubuntu@kria:~$ sudo shutdown -h nowexitlsgedit PynqDMAExample.py lscd PynqDMAExample/exitscp  design_1_lab_4_wrapper_V3.bit ubuntu@kria:~/PynqDMAExample/exitscp  design_1_lab_4_wrapper_V3.bit ubuntu@kria:~/PynqDMAExample/exitcd PynqDMAExample/lsgedit PynqDMAExample.py lsexitsudo shutdown -h nowsudo shutdown -h nowexitlsgedit PynqDMAExample.py lscd PynqDMAExample/exitscp  design_1_lab_4_wrapper_V3.bit ubuntu@kria:~/PynqDMAExample/exitlsgedit PynqDMAExample.py lsgedit PynqDMAExample.py lscd PynqDMAExample/lsexitgedit PynqDMAExample.py exitlscd PynqDMAExample/lsgedit PynqDMAExample.py lsgedit PynqDMAExample.py lsexitscp  design_1_lab_4_wrapper_V3.bit ubuntu@kria:~/PynqDMAExample/exitcd PynqDMAExample/lsgedit PynqDMAExample.py lsexitsudo shutdown -h nowls
+OpenCLExample  PynqDMAExample  firmware_update  snap
+ubuntu@kria:~$ cd PynqDMAeExample
+ubuntu@kria:~/PynqDMAExample$ ls
+PynqDMAExample.py              design_1_Lab_4_V4_wrapper.hwh  edges.jpg
+PynqDMAExample_edi.py          design_1_lab_4_wrapper_V3.bit  grayscale.jpg
+blurred.jpg                    design_1_lab_4_wrapper_V3.hwh  opencv_test.py
+contours.jpg                   design_1_wrapper.bit           original.jpg
+design_1_Lab_4_V4_wrapper.bit  design_1_wrapper.hwh
+ubuntu@kria:~/PynqDMAExample$ python3 PynqDMAExample.py
+Traceback (most recent call last):
+  File "/home/ubuntu/PynqDMAExample/PynqDMAExample.py", line 24, in <module>
+    overlay = Overlay(BITFILE)
+  File "/usr/local/share/pynq-venv/lib/python3.10/site-packages/pynq/overlay.py", line 348, in __init__
+    self.download()
+  File "/usr/local/share/pynq-venv/lib/python3.10/site-packages/pynq/overlay.py", line 424, in download
+    Clocks.set_pl_clk(i, div0, div1)
+  File "/usr/local/share/pynq-venv/lib/python3.10/site-packages/pynq/ps.py", line 303, in set_pl_clk
+    cls._instance.set_pl_clk(clk_idx, div0, div1, clk_mhz)
+  File "/usr/local/share/pynq-venv/lib/python3.10/site-packages/pynq/ps.py", line 311, in _instance
+    cls._real_instance = _ClocksUltrascale()
+  File "/usr/local/share/pynq-venv/lib/python3.10/site-packages/pynq/ps.py", line 463, in __init__
+    self._crf_mmio = MMIO(self.CRF_APB_ADDRESS, 0x100)
+  File "/usr/local/share/pynq-venv/lib/python3.10/site-packages/pynq/mmio.py", line 73, in __init__
+    self.array = self.device.mmap(base_addr, length)
+  File "/usr/local/share/pynq-venv/lib/python3.10/site-packages/pynq/pl_server/embedded_device.py", line 581, in mmap
+    raise EnvironmentError("Root permissions required.")
+OSError: Root permissions required.
+ubuntu@kria:~/PynqDMAExample$ sudo -ssudo -s
+[sudo] password for ubuntu: 
+Sorry, try again.
+[sudo] password for ubuntu: 
+root@kria:/home/ubuntu/PynqDMAExample# source /etc/profile.d/pynq_venv.shsource /etc/profile.d/pynq_venv.sh
+(pynq-venv) root@kria:/home/ubuntu/PynqDMAExample# cd /home/ubuntu/PynqDMAExamplecd /home/ubuntu/PynqDMAExample
+(pynq-venv) root@kria:/home/ubuntu/PynqDMAExample# cd /home/ubuntu/PynqDMAExample
+cd /home/ubuntu/PynqDMAExamplecd /home/ubuntu/PynqDMAExample
+(pynq-venv) root@kria:/home/ubuntu/PynqDMAExample# 
+(pynq-venv) root@kria:/home/ubuntu/PynqDMAExample# 
+(pynq-venv) root@kria:/home/ubuntu/PynqDMAExample# 
+(pynq-venv) root@kria:/home/ubuntu/PynqDMAExample# 
+(pynq-venv) root@kria:/home/ubuntu/PynqDMAExample# 
+(pynq-venv) root@kria:/home/ubuntu/PynqDMAExample# python3 PynqDMAExample.pypython3 PynqDMAExample.py
+Overlay IPs: ['axi_fifo_mm_s_0', 'axi_timer_0', 'axi_dma_0', 'axi_dma_1', 'axi_dma_2', 'zynq_ultra_ps_e_0']
+
+===== Test case 0 =====
+Received output:
+[154  74 146 119  78 160 175  89  88  84  92 162 145  92  98 134 163 184
+ 103 177 134  60 170  83 200 140  80 149 123 112 117  93  91 192  85 142
+  99 186  75 183 196 171 140 109  88  90 183 134  69 105 185 158 217  39
+  78 124 188 169 185 196 145 186 112 178]
+
+Expected output:
+[154  74 146 119  78 160 175  89  88  84  92 162 145  92  98 134 163 184
+ 103 177 134  60 170  83 200 140  80 149 123 112 117  93  91 192  85 142
+  99 186  75 183 196 171 140 109  88  90 183 134  69 105 185 158 217  39
+  78 124 188 169 185 196 145 186 112 178]
+
+Match: True
+Measured AXI Timer cycles: 63417
+Approx elapsed time: 634.170 us
+
+===== Final result =====
+Test Success
+(pynq-venv) root@kria:/home/ubuntu/PynqDMAExample# python3 PynqDMAExample.py
+Overlay IPs: ['axi_fifo_mm_s_0', 'axi_timer_0', 'axi_dma_0', 'axi_dma_1', 'axi_dma_2', 'zynq_ultra_ps_e_0']
+
+===== Test case 0 =====
+
+Running axi_dma_0 ...
+Received output:
+[154  74 146 119  78 160 175  89  88  84  92 162 145  92  98 134 163 184
+ 103 177 134  60 170  83 200 140  80 149 123 112 117  93  91 192  85 142
+  99 186  75 183 196 171 140 109  88  90 183 134  69 105 185 158 217  39
+  78 124 188 169 185 196 145 186 112 178]
+
+Expected output:
+[154  74 146 119  78 160 175  89  88  84  92 162 145  92  98 134 163 184
+ 103 177 134  60 170  83 200 140  80 149 123 112 117  93  91 192  85 142
+  99 186  75 183 196 171 140 109  88  90 183 134  69 105 185 158 217  39
+  78 124 188 169 185 196 145 186 112 178]
+
+Match for axi_dma_0: True
+Measured AXI Timer cycles for axi_dma_0: 65864
+Approx elapsed time for axi_dma_0: 658.640 us
+
+Running axi_dma_1 ...
+Received output:
+[154  74 146 119  78 160 175  89  88  84  92 162 145  92  98 134 163 184
+ 103 177 134  60 170  83 200 140  80 149 123 112 117  93  91 192  85 142
+  99 186  75 183 196 171 140 109  88  90 183 134  69 105 185 158 217  39
+  78 124 188 169 185 196 145 186 112 178]
+
+Expected output:
+[154  74 146 119  78 160 175  89  88  84  92 162 145  92  98 134 163 184
+ 103 177 134  60 170  83 200 140  80 149 123 112 117  93  91 192  85 142
+  99 186  75 183 196 171 140 109  88  90 183 134  69 105 185 158 217  39
+  78 124 188 169 185 196 145 186 112 178]
+
+Match for axi_dma_1: True
+Measured AXI Timer cycles for axi_dma_1: 52160
+Approx elapsed time for axi_dma_1: 521.600 us
+
+Running axi_dma_2 ...
+Received output:
+[154  74 146 119  78 160 175  89  88  84  92 162 145  92  98 134 163 184
+ 103 177 134  60 170  83 200 140  80 149 123 112 117  93  91 192  85 142
+  99 186  75 183 196 171 140 109  88  90 183 134  69 105 185 158 217  39
+  78 124 188 169 185 196 145 186 112 178]
+
+Expected output:
+[154  74 146 119  78 160 175  89  88  84  92 162 145  92  98 134 163 184
+ 103 177 134  60 170  83 200 140  80 149 123 112 117  93  91 192  85 142
+  99 186  75 183 196 171 140 109  88  90 183 134  69 105 185 158 217  39
+  78 124 188 169 185 196 145 186 112 178]
+
+Match for axi_dma_2: True
+Measured AXI Timer cycles for axi_dma_2: 49454
+Approx elapsed time for axi_dma_2: 494.540 us
+
+===== Summary =====
+axi_dma_0: cycles = 65864, time = 658.640 us, match = True
+axi_dma_1: cycles = 52160, time = 521.600 us, match = True
+axi_dma_2: cycles = 49454, time = 494.540 us, match = True
+
+===== Final result =====
+Test Success
+(pynq-venv) root@kria:/home/ubuntu/PynqDMAExample# ^C
+(pynq-venv) root@kria:/home/ubuntu/PynqDMAExample# 

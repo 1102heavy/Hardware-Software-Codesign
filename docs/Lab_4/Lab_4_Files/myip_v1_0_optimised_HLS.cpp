@@ -31,24 +31,28 @@
 // ACLK, ARESETN, TREADY, TDATA, TVALID are essential signals for AXIS. New version of AXI DMA seems to expect TSTRB and/or TKEEP as well.
 
 typedef ap_axis<32,0,0,0> AXIS;  //data, user, id, dest
-void myip_v1_0_HLS(hls::stream<AXIS>& S_AXIS, hls::stream<AXIS>& M_AXIS){
+void myip_v1_0_HLS_optimised(hls::stream<AXIS>& S_AXIS, hls::stream<AXIS>& M_AXIS){
 #pragma HLS INTERFACE ap_ctrl_none port=return
 #pragma HLS INTERFACE axis port=S_AXIS
 #pragma HLS INTERFACE axis port=M_AXIS
 #pragma HLS pipeline off
 
-ap_uint<8> A_Matrix[A_ROWS*A_COLS] = {0};
-ap_uint<8> B_Matrix[A_COLS] = {0};
-ap_uint<8> result[A_ROWS] = {0};
+
+	ap_uint<8> A_Matrix[A_ROWS*A_COLS] = {0};
+	ap_uint<8> B_Matrix[A_COLS] = {0};
+	ap_uint<8> result[A_ROWS] = {0};
+
+	#pragma HLS array_partition variable=A_Matrix cyclic factor=8
+	#pragma HLS array_partition variable=B_Matrix cyclic factor=8
 
 	int word_cnt;
 	ap_uint<8> sum = 0; // using arbitrary precision
 	//int sum = 0;		 // using 32 bit precision
 	AXIS read_input, write_output;
 
-		myip_v1_0_HLS_for1:for(word_cnt = 0; word_cnt < NUMBER_OF_INPUT_WORDS; word_cnt++){
+		myip_v1_0_HLS_optimised_for1:for(word_cnt = 0; word_cnt < NUMBER_OF_INPUT_WORDS; word_cnt++){
+        #pragma HLS UNROLL
 			read_input = S_AXIS.read();
-			
 			// read_input is the element (data + other signals) received by our ip through S_AXIS in one clock cycle (which contains one word).
 			// read() extracts it from the stream. Overloaded operator >> can also be used.
 			// sum += read_input.data; //extracting that word
@@ -62,7 +66,7 @@ ap_uint<8> result[A_ROWS] = {0};
 			}
 		}
 
-		for (int r = 0; r < A_ROWS; r++)
+					for (int r = 0; r < A_ROWS; r++)
 			{
 				int sum = 0;
 				// test1 = A_Matrix[0];
@@ -75,7 +79,7 @@ ap_uint<8> result[A_ROWS] = {0};
 			
 			}
 
-		myip_v1_0_HLS_for2:for(word_cnt = 0; word_cnt < NUMBER_OF_OUTPUT_WORDS; word_cnt++){
+		myip_v1_0_HLS_optimised_for2:for(word_cnt = 0; word_cnt < NUMBER_OF_OUTPUT_WORDS; word_cnt++){
 			//write_output.data = sum.to_int() + word_cnt;	// using arbitrary precision internally but int for interfacing
 			write_output.data = result[word_cnt];	// using 32 bit precision or arbitrary precision all the way
 			// write_output is the element sent by our ip through M_AXIS in one clock cycle.
