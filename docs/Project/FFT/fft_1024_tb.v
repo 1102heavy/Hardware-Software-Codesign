@@ -1,5 +1,5 @@
 // ─────────────────────────────────────────────────────────────────────────
-// fft_1024_tb.v  —  1024-point FFT testbench (7 tests)
+// fft_1024_tb.v  -  1024-point FFT testbench (7 tests)
 //
 // DUT: fft_8_top with N=1024, LOG2N=10, DWIDTH=16 (Q1.15)
 //
@@ -29,8 +29,8 @@
 //   X[0].real = 16384,  X[0].imag = 16384,  X[k≠0] = 0
 //
 // ── TEST 5: Nyquist alternating tone ─────────────────────────────────────
-//   x[n] = +32767 (n even),  −32767 (n odd),  imag = 0
-//   This is cos(π·n) — a real cosine exactly at the Nyquist frequency.
+//   x[n] = +32767 (n even),  -32767 (n odd),  imag = 0
+//   This is cos(π·n) - a real cosine exactly at the Nyquist frequency.
 //   Energy concentrates entirely in bin 512 (the Nyquist bin).
 //   X[512].real = 32767,  X[512].imag = 0,  X[k≠512] = 0
 //
@@ -40,12 +40,12 @@
 //   After 10×>>1:  16384 >> 10 = 16  for ALL bins, both components.
 //   X[k].real = 16,  X[k].imag = 16  for all k
 //
-// ── TEST 7: Conjugate symmetry — real cosine at bin 1 ───────────────────
+// ── TEST 7: Conjugate symmetry - real cosine at bin 1 ───────────────────
 //   x[n] = round(0x4000 · cos(2π·n/1024)),  imag = 0
-//   For any real-valued input: X[N−k] = conj(X[k])
+//   For any real-valued input: X[N-k] = conj(X[k])
 //   A cosine at bin 1 splits its energy equally into bins 1 and 1023.
 //   X[1].real  = X[1023].real  = 8192
-//   X[1].imag  = −X[1023].imag ≈ 0   (self-consistent for bin 1)
+//   X[1].imag  = -X[1023].imag ≈ 0   (self-consistent for bin 1)
 //   All other bins = 0
 //
 // ── Timing budget ────────────────────────────────────────────────────────
@@ -79,7 +79,7 @@ module fft_1024_tb;
     wire done;
 
     // ── DUT ───────────────────────────────────────────────────────────
-    fft_8_top #(
+    fft_1024_top #(
         .N(N), .LOG2N(LOG2N), .DWIDTH(DWIDTH)
     ) dut (
         .clk            (clk),
@@ -112,7 +112,7 @@ module fft_1024_tb;
         end
     end
 
-    // ── Shared TX buffer — fill this before calling send_and_wait ─────
+    // ── Shared TX buffer - fill this before calling send_and_wait ─────
     reg signed [DWIDTH-1:0] tx_real [0:N-1];
     reg signed [DWIDTH-1:0] tx_imag [0:N-1];
 
@@ -151,12 +151,17 @@ module fft_1024_tb;
 
             @(posedge done);
             @(posedge clk);
-            $display("  FFT done — %0d bins captured.", out_idx);
+            // The rev5 controller asserts done on the same edge that launches
+            // the last output beat. Our capture process stores that final beat
+            // with nonblocking assignments on the following clock edge, so
+            // wait one delta before reading out_idx / out_real / out_imag.
+            #1;
+            $display("  FFT done - %0d bins captured.", out_idx);
         end
     endtask
 
     // ── Check task: compare out_real/imag against exp_real/exp_imag ──
-    // Tolerance: abs(actual − expected) <= tol for each component.
+    // Tolerance: abs(actual - expected) <= tol for each component.
     // Only bins in the "non-trivial" set are checked strictly; rest use tol_rest.
     // For simplicity: caller sets exp_r/exp_i per bin inside the loop.
     // This task just prints the header/footer and runs the loop.
@@ -328,7 +333,7 @@ module fft_1024_tb;
     reg signed [DWIDTH-1:0] cosine_lut [0:N-1];
 
     initial begin
-        // Pre-compute cosine LUT — real variables are supported in XSim
+        // Pre-compute cosine LUT - real variables are supported in XSim
         for (cos_n = 0; cos_n < N; cos_n = cos_n + 1) begin
             angle_rad = 2.0 * 3.14159265358979 * cos_n / N;
             cos_val   = $cos(angle_rad) * 16384.0;
@@ -367,7 +372,7 @@ module fft_1024_tb;
         repeat(2) @(posedge clk);
 
         // =============================================================
-        // TEST 1 — Real DC
+        // TEST 1 - Real DC
         // =============================================================
         $display("");
         $display("================================================================");
@@ -385,7 +390,7 @@ module fft_1024_tb;
         repeat(4) @(posedge clk);
 
         // =============================================================
-        // TEST 2 — Real impulse
+        // TEST 2 - Real impulse
         // =============================================================
         $display("");
         $display("================================================================");
@@ -405,7 +410,7 @@ module fft_1024_tb;
         repeat(4) @(posedge clk);
 
         // =============================================================
-        // TEST 3 — Imaginary DC
+        // TEST 3 - Imaginary DC
         // =============================================================
         $display("");
         $display("================================================================");
@@ -433,7 +438,7 @@ module fft_1024_tb;
         repeat(4) @(posedge clk);
 
         // =============================================================
-        // TEST 4 — Complex DC
+        // TEST 4 - Complex DC
         // =============================================================
         $display("");
         $display("================================================================");
@@ -459,7 +464,7 @@ module fft_1024_tb;
         repeat(4) @(posedge clk);
 
         // =============================================================
-        // TEST 5 — Nyquist alternating tone
+        // TEST 5 - Nyquist alternating tone
         // =============================================================
         $display("");
         $display("================================================================");
@@ -481,7 +486,7 @@ module fft_1024_tb;
         repeat(4) @(posedge clk);
 
         // =============================================================
-        // TEST 6 — Complex impulse
+        // TEST 6 - Complex impulse
         // =============================================================
         $display("");
         $display("================================================================");
@@ -502,7 +507,7 @@ module fft_1024_tb;
         repeat(4) @(posedge clk);
 
         // =============================================================
-        // TEST 7 — Conjugate symmetry: real cosine at bin 1
+        // TEST 7 - Conjugate symmetry: real cosine at bin 1
         // =============================================================
         $display("");
         $display("================================================================");
@@ -531,10 +536,10 @@ module fft_1024_tb;
         if ((^out_real[1]    !== 1'bx) && (^out_real[1023] !== 1'bx) &&
             (^out_imag[1]    !== 1'bx) && (^out_imag[1023] !== 1'bx)) begin
             $display(" Conj symmetry check:");
-            $display("   X[1].real(%0d) vs X[1023].real(%0d) — %s",
+            $display("   X[1].real(%0d) vs X[1023].real(%0d) - %s",
                      $signed(out_real[1]), $signed(out_real[1023]),
                      ($signed(out_real[1]) == $signed(out_real[1023])) ? "MATCH" : "MISMATCH");
-            $display("   X[1].imag(%0d) vs -X[1023].imag(%0d) — %s",
+            $display("   X[1].imag(%0d) vs -X[1023].imag(%0d) - %s",
                      $signed(out_imag[1]), -$signed(out_imag[1023]),
                      ($signed(out_imag[1]) == -$signed(out_imag[1023])) ? "MATCH" : "MISMATCH");
         end
@@ -562,9 +567,9 @@ module fft_1024_tb;
         $display(" OVERALL: %0d PASS,  %0d FAIL  across all 7 tests",
                  total_pass, total_fail);
         if (total_fail == 0)
-            $display(" *** ALL TESTS PASSED — FFT datapath verified ***");
+            $display(" *** ALL TESTS PASSED - FFT datapath verified ***");
         else
-            $display(" *** %0d FAILURE(S) — debug before hardware deployment ***",
+            $display(" *** %0d FAILURE(S) - debug before hardware deployment ***",
                      total_fail);
         $display("================================================================");
         $finish;

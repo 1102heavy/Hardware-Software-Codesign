@@ -1,7 +1,39 @@
 Zynq MP First Stage Boot Loader 
-Release 2025.2   Mar 16 2026  -  07:11:47
+Release 2025.2   Apr  1 2026  -  12:40:57
 PMU-FW is not running, certain applications may not be supported.
-beginning of programme
-Timer initialising1.1
-Timer initialisiation successful
-BOOT
+
+========================================
+  1024-pt FFT Test  (AXI FIFO polling)  
+========================================
+[1] Looking up FIFO config at 0xA0000000...
+    OK  base=0xA0000000
+[2] Calling XLlFifo_CfgInitialize (first PL register access)...
+Zynq MP First Stage Boot Loader 
+Release 2025.2   Apr  1 2026  -  12:40:57
+PMU-FW is not running, certain applications may not be supported.
+
+========================================
+  1024-pt FFT Test  (AXI FIFO polling)  
+========================================
+[1] Looking up FIFO config at 0xA0000000...
+    OK  base=0xA0000000
+[2] Calling XLlFifo_CfgInitialize (first PL register access)...
+    OK
+[3] Clearing interrupt flags...
+    ISR after clear = 0x00000000 (expect 0x00000000)
+FIFO ready.
+Generating cosine tone at bin k=4, N=1024
+TX: writing 1024 words to FIFO...
+TX: complete (4096 bytes)
+RX: waiting for FFT to finish...
+RX: received 1024 words
+
+--- FFT Spectrum  (|re| or |im| > 1000) ---
+  X[   4] =  16378 + j*    -3
+  X[1020] =  16382 + j*     0
+
+--- Verification ---
+  X[4]    : PASS (peak found)
+  X[1020] : PASS (peak found)
+  Overall  : PASS
+========================================

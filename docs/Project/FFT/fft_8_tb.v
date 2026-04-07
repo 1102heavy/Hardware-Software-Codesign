@@ -23,7 +23,7 @@ module fft_8_tb;
     wire done;
 
     // ── DUT instantiation ──────────────────────────────────────────────
-    fft_8_top #(
+    fft_top_8 #(
         .N(N), .LOG2N(LOG2N), .DWIDTH(DWIDTH)
     ) dut (
         .clk            (clk),

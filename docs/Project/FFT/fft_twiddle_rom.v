@@ -1,12 +1,13 @@
 // ─────────────────────────────────────────────────────────────────────────
 // fft_twiddle_rom.v
 //
-// Combinational ROM: 512 × 32 bits.
+// Synchronous block ROM: 512 × 32 bits.
 // Word format: bits[31:16] = w_real (Q1.15), bits[15:0] = w_imag (Q1.15)
 // W_1024^k = cos(2πk/1024) - j*sin(2πk/1024) stored at address k.
-// Read latency: 0 clock cycles (combinational, inferred as distributed RAM).
 //
-// Twiddle factors are hardcoded — no external .mem file required.
+// Twiddle factors are hardcoded - no external .mem file required.
+// The controller presents rom_addr during S_READ so w_real/w_imag are ready
+// to be captured in S_LATCH.
 // ─────────────────────────────────────────────────────────────────────────
 `timescale 1ns/1ps
 
@@ -14,15 +15,17 @@ module fft_twiddle_rom #(
     parameter DEPTH = 512,
     parameter ABITS = 9      // ceil(log2(512)) = 9
 )(
-    input  wire              clk,   // unused; kept for interface compatibility
-    input  wire [ABITS-1:0]  addr,
-    output wire signed [15:0] w_real,
-    output wire signed [15:0] w_imag
+    input  wire               clk,
+    input  wire [ABITS-1:0]   addr,
+    output reg  signed [15:0] w_real,
+    output reg  signed [15:0] w_imag
 );
 
-    (* rom_style = "distributed" *) reg [31:0] rom [0:DEPTH-1];
+    (* rom_style = "block" *) reg [31:0] rom [0:DEPTH-1];
 
     initial begin
+        w_real = 16'sd0;
+        w_imag = 16'sd0;
         rom[  0] = 32'h7fff0000; rom[  1] = 32'h7fffff37; rom[  2] = 32'h7ffefe6e; rom[  3] = 32'h7ffafda5;
         rom[  4] = 32'h7ff6fcdc; rom[  5] = 32'h7ff1fc13; rom[  6] = 32'h7feafb4a; rom[  7] = 32'h7fe2fa81;
         rom[  8] = 32'h7fd9f9b8; rom[  9] = 32'h7fcef8ef; rom[ 10] = 32'h7fc2f827; rom[ 11] = 32'h7fb5f75e;
@@ -153,7 +156,9 @@ module fft_twiddle_rom #(
         rom[508] = 32'h800afcdc; rom[509] = 32'h8006fda5; rom[510] = 32'h8002fe6e; rom[511] = 32'h8001ff37;
     end
 
-    assign w_real = $signed(rom[addr][31:16]);
-    assign w_imag = $signed(rom[addr][15:0]);
+    always @(posedge clk) begin
+        w_real <= $signed(rom[addr][31:16]);
+        w_imag <= $signed(rom[addr][15:0]);
+    end
 
 endmodule
