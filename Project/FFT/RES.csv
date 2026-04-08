@@ -1,0 +1,298 @@
+Zynq MP First Stage Boot Loader 
+Release 2025.2   Apr  7 2026  -  13:15:36
+PMU-FW is not running, certain applications may not be supported.
+
+============================================================
+  FFT Performance Benchmark: HLS FFT-Only vs RTL FFT        
+  N=1024  LOG2N=10  TEST_BIN=4  Timer=100 MHz              
+============================================================
+
+--- INIT ---------------------------------------------------
+Zynq MP First Stage Boot Loader 
+Release 2025.2   Apr  7 2026  -  13:15:36
+PMU-FW is not running, certain applications may not be supported.
+
+============================================================
+  FFT Performance Benchmark: HLS FFT-Only vs RTL FFT        
+  N=1024  LOG2N=10  TEST_BIN=4  Timer=100 MHz              
+============================================================
+
+--- INIT ---------------------------------------------------
+[Timer] OK  DevId=0  Clk=100 MHz
+[DMA0 (HLS)] OK  BaseAddr=0xA0000000
+[DMA1 (RTL)] OK  BaseAddr=0xA0040000
+[HLS-IP] OK  BaseAddr=0xA0010000
+--- INIT DONE ----------------------------------------------
+
+============================================================
+ TEST 1 — DC Input  (x[n] = 0x7FFF + j0  for all n)       
+============================================================
+
+[HLS] Running HLS-DC (4096 bytes)...
+[HLS-DC] Done.
+[HLS-DC-DC] X[   0] =  32757 + j*     0  (expect ~32767 + j*0)  PASS
+[HLS] TEST 1 PASS  (7710 cycles)
+
+[RTL] Running RTL-DC (4096 bytes)...
+[RTL-DC] Done.
+[RTL-DC-DC] X[   0] =  32757 + j*     0  (expect ~32767 + j*0)  PASS
+[RTL] TEST 1 PASS  (17817 cycles)
+
+[SW]  Running SW-DC (software, Cortex-A53)...
+[SW-DC] Done.
+[SW-DC-DC] X[   0] =  32767 + j*     0  (expect ~32767 + j*0)  PASS
+[SW]  TEST 1 PASS  (113506 cycles)
+
+============================================================
+ TEST 2 — Impulse  (x[0]=0x7FFF, x[1..1023]=0)              
+============================================================
+
+[HLS] Running HLS-Imp (4096 bytes)...
+[HLS-Imp] Done.
+[HLS-Imp-Imp] Checking all bins = 31 +/-5...
+[HLS-Imp-Imp] All 1024 bins within tolerance.
+[HLS] TEST 2 PASS  (7757 cycles)
+
+[RTL] Running RTL-Imp (4096 bytes)...
+[RTL-Imp] Done.
+[RTL-Imp-Imp] Checking all bins = 31 +/-5...
+[RTL-Imp-Imp] All 1024 bins within tolerance.
+[RTL] TEST 2 PASS  (17884 cycles)
+
+[SW]  Running SW-Imp (software, Cortex-A53)...
+[SW-Imp] Done.
+[SW-Imp-Imp] Checking all bins = 31 +/-5...
+[SW-Imp-Imp] All 1024 bins within tolerance.
+[SW]  TEST 2 PASS  (113333 cycles)
+
+============================================================
+ TEST 3 — Cosine Tone at bin k=4                          
+============================================================
+
+[HLS] Running HLS-Cos (4096 bytes)...
+[HLS-Cos] Done.
+[HLS-Cos-Cos] Non-zero bins (|re| or |im| > 1000):
+  X[   4] =  16381 + j*    -1  <-- positive-freq peak
+  X[1020] =  16382 + j*    -2  <-- negative-freq peak
+[HLS-Cos-Cos] X[4]: PASS  X[1020]: PASS
+[HLS] TEST 3 PASS  (7752 cycles)
+
+[RTL] Running RTL-Cos (4096 bytes)...
+[RTL-Cos] Done.
+[RTL-Cos-Cos] Non-zero bins (|re| or |im| > 1000):
+  X[   4] =  16378 + j*    -3  <-- positive-freq peak
+  X[1020] =  16382 + j*     0  <-- negative-freq peak
+[RTL-Cos-Cos] X[4]: PASS  X[1020]: PASS
+[RTL] TEST 3 PASS  (17887 cycles)
+
+[SW]  Running SW-Cos (software, Cortex-A53)...
+[SW-Cos] Done.
+[SW-Cos-Cos] Non-zero bins (|re| or |im| > 1000):
+  X[   4] =  16383 + j*     0  <-- positive-freq peak
+  X[1020] =  16383 + j*     0  <-- negative-freq peak
+[SW-Cos-Cos] X[4]: PASS  X[1020]: PASS
+[SW]  TEST 3 PASS  (113330 cycles)
+
+============================================================
+  PERFORMANCE COMPARISON  (AXI Timer @ 100 MHz)            
+  Test      HLS(OK)  RTL(OK)   SW(OK)   HW Speedup
+  -------  ----------  ----------  ----------  ----------  
+  DC             7710       17817      113506   ~14x faster
+  Impulse        7757       17884      113333   ~14x faster
+  Cosine         7752       17887      113330   ~14x faster
+============================================================
+  OVERALL : 9 PASS,  0 FAIL  (9 tests: HLS + RTL + SW)  
+  *** ALL TESTS PASSED ***
+============================================================
+Zynq MP First Stage Boot Loader 
+Release 2025.2   Apr  7 2026  -  13:15:36
+PMU-FW is not running, certain applications may not be supported.
+
+============================================================
+  FFT Performance Benchmark: HLS FFT-Only vs RTL FFT        
+  N=1024  LOG2N=10  TEST_BIN=4  Timer=100 MHz              
+============================================================
+
+--- INIT ---------------------------------------------------
+[Timer] OK  DevId=0  Clk=100 MHz
+[DMA0 (HLS)] OK  BaseAddr=0xA0000000
+[DMA1 (RTL)] OK  BaseAddr=0xA0040000
+[HLS-IP] OK  BaseAddr=0xA0010000
+--- INIT DONE ----------------------------------------------
+
+============================================================
+ TEST 1 — DC Input  (x[n] = 0x7FFF + j0  for all n)       
+============================================================
+
+[HLS] Running HLS-DC (4096 bytes)...
+[HLS-DC] Done.
+[HLS-DC-DC] X[   0] =  32757 + j*     0  (expect ~32767 + j*0)  PASS
+[HLS] TEST 1 PASS  (7708 cycles)
+
+[RTL] Running RTL-DC (4096 bytes)...
+[RTL-DC] Done.
+[RTL-DC-DC] X[   0] =  32757 + j*     0  (expect ~32767 + j*0)  PASS
+[RTL] TEST 1 PASS  (17815 cycles)
+
+[SW]  Running SW-DC (software, Cortex-A53)...
+[SW-DC] Done.
+[SW-DC-DC] X[   0] =  32767 + j*     0  (expect ~32767 + j*0)  PASS
+[SW]  TEST 1 PASS  (113498 cycles)
+
+============================================================
+ TEST 2 — Impulse  (x[0]=0x7FFF, x[1..1023]=0)              
+============================================================
+
+[HLS] Running HLS-Imp (4096 bytes)...
+[HLS-Imp] Done.
+[HLS-Imp-Imp] Checking all bins = 31 +/-5...
+[HLS-Imp-Imp] All 1024 bins within tolerance.
+[HLS] TEST 2 PASS  (7755 cycles)
+
+[RTL] Running RTL-Imp (4096 bytes)...
+[RTL-Imp] Done.
+[RTL-Imp-Imp] Checking all bins = 31 +/-5...
+[RTL-Imp-Imp] All 1024 bins within tolerance.
+[RTL] TEST 2 PASS  (17884 cycles)
+
+[SW]  Running SW-Imp (software, Cortex-A53)...
+[SW-Imp] Done.
+[SW-Imp-Imp] Checking all bins = 31 +/-5...
+[SW-Imp-Imp] All 1024 bins within tolerance.
+[SW]  TEST 2 PASS  (113334 cycles)
+
+============================================================
+ TEST 3 — Cosine Tone at bin k=4                          
+============================================================
+
+[HLS] Running HLS-Cos (4096 bytes)...
+[HLS-Cos] Done.
+[HLS-Cos-Cos] Non-zero bins (|re| or |im| > 1000):
+  X[   4] =  16381 + j*    -1  <-- positive-freq peak
+  X[1020] =  16382 + j*    -2  <-- negative-freq peak
+[HLS-Cos-Cos] X[4]: PASS  X[1020]: PASS
+[HLS] TEST 3 PASS  (7752 cycles)
+
+[RTL] Running RTL-Cos (4096 bytes)...
+[RTL-Cos] Done.
+[RTL-Cos-Cos] Non-zero bins (|re| or |im| > 1000):
+  X[   4] =  16378 + j*    -3  <-- positive-freq peak
+  X[1020] =  16382 + j*     0  <-- negative-freq peak
+[RTL-Cos-Cos] X[4]: PASS  X[1020]: PASS
+[RTL] TEST 3 PASS  (17883 cycles)
+
+[SW]  Running SW-Cos (software, Cortex-A53)...
+[SW-Cos] Done.
+[SW-Cos-Cos] Non-zero bins (|re| or |im| > 1000):
+  X[   4] =  16383 + j*     0  <-- positive-freq peak
+  X[1020] =  16383 + j*     0  <-- negative-freq peak
+[SW-Cos-Cos] X[4]: PASS  X[1020]: PASS
+[SW]  TEST 3 PASS  (113322 cycles)
+
+============================================================
+  PERFORMANCE COMPARISON  (AXI Timer @ 100 MHz)            
+  Test      HLS(OK)  RTL(OK)   SW(OK)   HW Speedup
+  -------  ----------  ----------  ----------  ----------  
+  DC             7708       17815      113498   ~14x faster
+  Impulse        7755       17884      113334   ~14x faster
+  Cosine         7752       17883      113322   ~14x faster
+============================================================
+  OVERALL : 9 PASS,  0 FAIL  (9 tests: HLS + RTL + SW)  
+  *** ALL TESTS PASSED ***
+============================================================
+Zynq MP First Stage Boot Loader 
+Release 2025.2   Apr  8 2026  -  08:34:46
+PMU-FW is not running, certain applications may not be supported.
+
+============================================================
+  FFT Performance Benchmark: HLS FFT-Only vs RTL FFT        
+  N=1024  LOG2N=10  TEST_BIN=4  Timer=100 MHz              
+============================================================
+
+--- INIT ---------------------------------------------------
+[Timer] OK  DevId=0  Clk=100 MHz
+[DMA0 (HLS)] OK  BaseAddr=0xA0000000
+[DMA1 (RTL)] OK  BaseAddr=0xA0040000
+[HLS-IP] OK  BaseAddr=0xA0010000
+--- INIT DONE ----------------------------------------------
+
+============================================================
+ TEST 1 — DC Input  (x[n] = 0x7FFF + j0  for all n)       
+============================================================
+
+[HLS] Running HLS-DC (4096 bytes)...
+[HLS-DC] Done.
+[HLS-DC-DC] X[   0] =  32757 + j*     0  (expect ~32767 + j*0)  PASS
+[HLS] TEST 1 PASS  (7708 cycles)
+
+[RTL] Running RTL-DC (4096 bytes)...
+[RTL-DC] Done.
+[RTL-DC-DC] X[   0] =  32757 + j*     0  (expect ~32767 + j*0)  PASS
+[RTL] TEST 1 PASS  (17817 cycles)
+
+[SW]  Running SW-DC (software, Cortex-A53)...
+[SW-DC] Done.
+[SW-DC-DC] X[   0] =  32767 + j*     0  (expect ~32767 + j*0)  PASS
+[SW]  TEST 1 PASS  (113506 cycles)
+
+============================================================
+ TEST 2 — Impulse  (x[0]=0x7FFF, x[1..1023]=0)              
+============================================================
+
+[HLS] Running HLS-Imp (4096 bytes)...
+[HLS-Imp] Done.
+[HLS-Imp-Imp] Checking all bins = 31 +/-5...
+[HLS-Imp-Imp] All 1024 bins within tolerance.
+[HLS] TEST 2 PASS  (7755 cycles)
+
+[RTL] Running RTL-Imp (4096 bytes)...
+[RTL-Imp] Done.
+[RTL-Imp-Imp] Checking all bins = 31 +/-5...
+[RTL-Imp-Imp] All 1024 bins within tolerance.
+[RTL] TEST 2 PASS  (17884 cycles)
+
+[SW]  Running SW-Imp (software, Cortex-A53)...
+[SW-Imp] Done.
+[SW-Imp-Imp] Checking all bins = 31 +/-5...
+[SW-Imp-Imp] All 1024 bins within tolerance.
+[SW]  TEST 2 PASS  (113331 cycles)
+
+============================================================
+ TEST 3 — Cosine Tone at bin k=4                          
+============================================================
+
+[HLS] Running HLS-Cos (4096 bytes)...
+[HLS-Cos] Done.
+[HLS-Cos-Cos] Non-zero bins (|re| or |im| > 1000):
+  X[   4] =  16381 + j*    -1  <-- positive-freq peak
+  X[1020] =  16382 + j*    -2  <-- negative-freq peak
+[HLS-Cos-Cos] X[4]: PASS  X[1020]: PASS
+[HLS] TEST 3 PASS  (7750 cycles)
+
+[RTL] Running RTL-Cos (4096 bytes)...
+[RTL-Cos] Done.
+[RTL-Cos-Cos] Non-zero bins (|re| or |im| > 1000):
+  X[   4] =  16378 + j*    -3  <-- positive-freq peak
+  X[1020] =  16382 + j*     0  <-- negative-freq peak
+[RTL-Cos-Cos] X[4]: PASS  X[1020]: PASS
+[RTL] TEST 3 PASS  (17887 cycles)
+
+[SW]  Running SW-Cos (software, Cortex-A53)...
+[SW-Cos] Done.
+[SW-Cos-Cos] Non-zero bins (|re| or |im| > 1000):
+  X[   4] =  16383 + j*     0  <-- positive-freq peak
+  X[1020] =  16383 + j*     0  <-- negative-freq peak
+[SW-Cos-Cos] X[4]: PASS  X[1020]: PASS
+[SW]  TEST 3 PASS  (113324 cycles)
+
+============================================================
+  PERFORMANCE COMPARISON  (AXI Timer @ 100 MHz)            
+  Test      HLS(OK)  RTL(OK)   SW(OK)   HW Speedup
+  -------  ----------  ----------  ----------  ----------  
+  DC             7708       17817      113506   ~14x faster
+  Impulse        7755       17884      113331   ~14x faster
+  Cosine         7750       17887      113324   ~14x faster
+============================================================
+  OVERALL : 9 PASS,  0 FAIL  (9 tests: HLS + RTL + SW)  
+  *** ALL TESTS PASSED ***
+============================================================

@@ -1,0 +1,75 @@
+Zynq MP First Stage Boot Loader 
+Release 2025.2   Feb 16 2026  -  08:55:50
+PMU-FW is not running, certain applications may not be supported.
+beginning of programme
+Timer initialising1.1
+Timer initialisiation successful
+BOOT
+CYC_FIFO=67738
+ Comparing data ...
+CYC_MATRIX_MULTIPLY=2177
+RES
+154
+74
+146
+119
+78
+160
+175
+89
+88
+84
+92
+162
+145
+92
+98
+134
+163
+184
+103
+177
+134
+60
+170
+83
+200
+140
+80
+149
+123
+112
+117
+93
+91
+192
+85
+142
+99
+186
+75
+183
+196
+171
+140
+109
+88
+90
+183
+134
+69
+105
+185
+158
+217
+39
+78
+124
+188
+169
+185
+196
+145
+186
+112
+178
